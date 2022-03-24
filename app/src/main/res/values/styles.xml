@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="WhitePage" parent="Theme.ShelterDom">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/text_dark</item>
+
+    </style>
+
+    <style name="LogoTextView">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="SideMenu" >
+        <item name="itemTextColor">@color/primary</item>
+        <item name="itemTextAppearance">@style/CustomTextStyle</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="Widget.Material3.Toolbar">
+        <item name="titleTextColor">@color/primary</item>
+        <item name="titleTextAppearance">@style/ToolbarTitle</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.AppCompat.Caption</item>
+    </style>
+
+    <style name="ToolbarTitle">
+        <item name="fontFamily">@font/martel</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="H2">
+        <item name="fontFamily">@font/butler</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="H4" parent="@style/TextAppearance.Material3.BodySmall">>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/text_dark</item>
+    </style>
+
+    <style name="DescriptionText" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textAllCaps">true</item>
+        <item name="fontFamily">@font/nanum</item>
+    </style>
+
+
+
+</resources>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Shelter-Dom</string>
+    <string name="make_a_friend">Make a friend</string>
+    <string name="main_context">We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!</string>
+    <string name="not_only_people_need_a_house">Not only people need a house</string>
+    <string name="cozy_house">Cozy House</string>
+    <string name="shelter_for_pets_in_boston">Shelter for pets in Boston</string>
+    <string name="about_the_shelter">About the shelter</string>
+    <string name="help_the_shelter">Help the shelter</string>
+    <string name="contacts">Contacts</string>
+    <string name="developed_by">Developed by...</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="op">Open</string>
+    <string name="about_title">About the shelter “Cozy House”</string>
+    <string name="about_description">Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.\n\nWe feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.</string>
+    <string name="home">Home</string>
+    <string name="our_pets">Our pets</string>
+</resources>
