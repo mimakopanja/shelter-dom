@@ -44,6 +44,13 @@
     <style name="DescriptionText" parent="TextAppearance.Material3.BodySmall">
         <item name="android:textAllCaps">true</item>
         <item name="fontFamily">@font/nanum</item>
+        <item name="android:textSize">@dimen/text_12</item>
+    </style>
+
+    <style name="ImageLabel" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textAppearance">@style/H4</item>
+        <item name="android:textSize">10sp</item>
     </style>
 
 

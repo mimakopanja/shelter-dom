@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin_sixteen">16dp</dimen>
+    <dimen name="text_ten_sp">10sp</dimen>
+    <dimen name="padding_20">20dp</dimen>
+    <dimen name="margin_42">42dp</dimen>
+    <dimen name="text_12">12sp</dimen>
+    <dimen name="image_300_dp">300dp</dimen>
+    <dimen name="margin_50_dp">50dp</dimen>
+    <dimen name="margin_100_dp">100dp</dimen>
 </resources>

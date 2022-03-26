@@ -12,9 +12,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="42dp"
+        android:layout_marginStart="@dimen/padding_20"
+        android:layout_marginEnd="@dimen/padding_20"
+        android:layout_marginBottom="@dimen/margin_42"
         android:text="@string/not_only_people_need_a_house"
         style="@style/H2"
         app:layout_constraintBottom_toTopOf="@id/main_content_textview"
@@ -27,7 +27,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="12sp"
         style="@style/DescriptionText"
         android:layout_marginBottom="@dimen/margin_sixteen"
         android:layout_marginStart="@dimen/margin_sixteen"
@@ -49,9 +48,9 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/puppy_imageview"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:src="@drawable/start_sceen_puppy"
+        android:layout_width="@dimen/image_300_dp"
+        android:layout_height="@dimen/image_300_dp"
+        android:src="@drawable/start_screen_puppy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

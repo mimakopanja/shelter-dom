@@ -5,8 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="top"
     android:orientation="vertical"
-    android:padding="@dimen/margin_sixteen"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:padding="@dimen/margin_sixteen">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/navigation_logo"
@@ -14,14 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ToolbarTitle"
-        android:paddingTop="8dp"/>
+        android:paddingTop="@dimen/padding_20"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:text="@string/shelter_for_pets_in_boston"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="10sp"
+        android:textSize="@dimen/text_ten_sp"
+        android:textColor="@color/white"
         style="@style/TextAppearance.AppCompat.Button"
         android:layout_marginStart="@dimen/margin_sixteen"/>
 

@@ -3,30 +3,23 @@ package com.geekbrains.shelter_dom
 
 
 
-import android.content.Context
+
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.*
 import com.geekbrains.shelter_dom.databinding.ActivityMainBinding
-import com.geekbrains.shelter_dom.ui.main.MainFragment
+import com.geekbrains.shelter_dom.ui.Screens
+import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.google.android.material.navigation.NavigationView
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
+    private val navigator = AppNavigator(this, R.id.container)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +27,48 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //because there is no dark theme, later delete
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        val navHostFragment = (supportFragmentManager.findFragmentById(binding.container.id) as NavHostFragment)
 
-        val navController = navHostFragment.navController
-        binding.navView.setupWithNavController(navController)
-        val appBarConfiguration = AppBarConfiguration(navController.graph, binding.drawerLayout)
-        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
+        setSupportActionBar(binding.toolbar)
+        val toggle = ActionBarDrawerToggle(
+            this,
+            binding.drawerLayout,
+            binding.toolbar,
+            R.string.open,
+            R.string.close
+        )
+        binding.drawerLayout.addDrawerListener(toggle)
+        toggle.isDrawerIndicatorEnabled
+        toggle.syncState()
+        binding.navView.setNavigationItemSelectedListener(this)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        App.INSTANCE.navigatorHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        App.INSTANCE.navigatorHolder.removeNavigator()
+        super.onPause()
+    }
+
+    override fun onBackPressed() {
+        App.INSTANCE.router.exit()
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.navigation_home -> App.INSTANCE.router.navigateTo(Screens.OpenHomeFragment())
+            R.id.navigation_about -> App.INSTANCE.router.navigateTo(Screens.OpenAboutFragment())
+            R.id.navigation_our_pets -> TODO()
+            R.id.navigation_help -> App.INSTANCE.router.navigateTo(Screens.OpenHelpShelterFragment())
+            R.id.navigation_contacts -> TODO()
+
+        }
+        binding.drawerLayout.closeDrawers()
+        return true
     }
 }
