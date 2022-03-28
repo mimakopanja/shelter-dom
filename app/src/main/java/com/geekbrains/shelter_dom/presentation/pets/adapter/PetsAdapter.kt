@@ -26,7 +26,7 @@ class PetsAdapter(
 
 
 //                itemImageView.setImageResource()
-//                itemTextView.text =
+                itemTextView.text = pet.name
                 itemView.setOnClickListener {
                     onClickListener.onClick(pet)
                 }
