@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#F1CDB3</color>
     <color name="text_dark">#545454</color>
+    <color name="animals_fragment_bg">#F6F6F6</color>
+
+    <color name="color_dark_3xl">#292929</color>
 </resources>

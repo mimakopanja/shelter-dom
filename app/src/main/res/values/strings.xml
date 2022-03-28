@@ -7,6 +7,7 @@
     <string name="shelter_for_pets_in_boston">Shelter for pets in Boston</string>
     <string name="about_the_shelter">About the shelter</string>
     <string name="help_the_shelter">Help the shelter</string>
+    <string name="animals_fragment_title">Our friends who are looking for a house</string>
     <string name="contacts">Contacts</string>
     <string name="developed_by">Developed by...</string>
     <string name="open">Open</string>
@@ -26,4 +27,5 @@
     <string name="bowls">Bowls and cups</string>
     <string name="vitamins">Vitamins</string>
     <string name="collars_leashes">Collars / leashes</string>
+    <string name="get_to_know_the_rest">Get to know the rest</string>
 </resources>

@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(item.itemId) {
             R.id.navigation_home -> App.INSTANCE.router.navigateTo(Screens.OpenHomeFragment())
             R.id.navigation_about -> App.INSTANCE.router.navigateTo(Screens.OpenAboutFragment())
-            R.id.navigation_our_pets -> TODO()
+            R.id.navigation_our_pets -> App.INSTANCE.router.navigateTo(Screens.OpenOurPetsFragment())
             R.id.navigation_help -> App.INSTANCE.router.navigateTo(Screens.OpenHelpShelterFragment())
             R.id.navigation_contacts -> TODO()
 
