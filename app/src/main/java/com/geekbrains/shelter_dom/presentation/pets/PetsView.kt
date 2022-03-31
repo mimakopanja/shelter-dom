@@ -8,4 +8,5 @@ import moxy.viewstate.strategy.StateStrategyType
 interface PetsView : MvpView {
     fun init()
     fun updateList()
+    fun showToast(text: String)
 }

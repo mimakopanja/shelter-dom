@@ -3,11 +3,11 @@ package com.geekbrains.shelter_dom.presentation.pets.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.geekbrains.shelter_dom.data.pet.Pet
+import com.geekbrains.shelter_dom.data.pet.Data
 import com.geekbrains.shelter_dom.databinding.ItemPetBinding
 
 class PetsAdapter(
-    private val pets: List<Pet>,
+    private val data: List<Data>,
     private val onClickListener: OnClickListener
 ) :
     RecyclerView.Adapter<PetsAdapter.PetsViewHolder>() {
@@ -19,16 +19,16 @@ class PetsAdapter(
     ) : RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bind(
-            pet: Pet,
+            data: Data,
             onClickListener: OnClickListener
         ) {
             with(viewBinding) {
 
 
 //                itemImageView.setImageResource()
-                itemTextView.text = pet.name
+                itemTextView.text = data.name
                 itemView.setOnClickListener {
-                    onClickListener.onClick(pet)
+                    onClickListener.onClick(data)
                 }
             }
         }
@@ -41,13 +41,13 @@ class PetsAdapter(
     }
 
     override fun onBindViewHolder(holder: PetsViewHolder, position: Int) {
-        val pet: Pet = pets[position]
-        holder.bind(pet, onClickListener)
+        val data: Data = data[position]
+        holder.bind(data, onClickListener)
     }
 
-    override fun getItemCount() = pets.size
+    override fun getItemCount() = data.size
 
-    class OnClickListener(val clickListener: (pet: Pet) -> Unit) {
-        fun onClick(pet: Pet) = clickListener(pet)
+    class OnClickListener(val clickListener: (data: Data) -> Unit) {
+        fun onClick(data: Data) = clickListener(data)
     }
 }

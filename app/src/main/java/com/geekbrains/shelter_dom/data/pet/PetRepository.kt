@@ -1,7 +1,10 @@
 package com.geekbrains.shelter_dom.data.pet
 
-interface PetRepository {
-    fun getPets(): List<Pet>
+import retrofit2.Call
+import retrofit2.Callback
 
-    fun getPetById(id: String): Pet
+interface PetRepository {
+    fun getPets(callback: Callback<Base>)
+
+    fun getPetById(id: String): Call<Data>
 }
