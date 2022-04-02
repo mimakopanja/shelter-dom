@@ -11,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
+import kotlin.collections.ArrayList
 
 @InjectViewState
 class PetsPresenter(
@@ -18,7 +19,7 @@ class PetsPresenter(
     private val router: Router)
     : MvpPresenter<PetsView>() {
 
-    var data: List<Data> = arrayListOf()
+    var data: MutableList<Data> = arrayListOf()
 
     val petClickListener = PetsAdapter.OnClickListener {
 //        router.navigateTo(Screens.OpenPetDetailsFragment)
@@ -26,10 +27,11 @@ class PetsPresenter(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        viewState.init()
         loadData()
     }
 
-    private fun loadData() {
+    fun loadData() {
         petsRepo.getPets(callback)
     }
 
@@ -42,9 +44,9 @@ class PetsPresenter(
         override fun onResponse(call: Call<Base>, response: Response<Base>) {
             if (response.isSuccessful) {
                 response.body()?.let {
-                    data = it.data
+                    data = ArrayList(it.data)
                 }
-                viewState.init()
+                viewState.updateList()
             }
         }
 

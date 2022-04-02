@@ -4,6 +4,7 @@ package com.geekbrains.shelter_dom
 
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -14,7 +15,6 @@ import com.geekbrains.shelter_dom.databinding.ActivityMainBinding
 import com.geekbrains.shelter_dom.ui.Screens
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.google.android.material.navigation.NavigationView
-
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 

@@ -6,40 +6,20 @@
     android:background="@color/animals_fragment_bg"
     android:theme="@style/WhitePage">
 
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/help_title_textview"
-        style="@style/H2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_fragment_animals_title"
-        android:layout_marginTop="@dimen/margin_50_dp"
-        android:layout_marginEnd="@dimen/margin_fragment_animals_title"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:text="@string/animals_fragment_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_pets"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/margin_fragment_animals_title"
-        android:layout_marginTop="@dimen/margin_50_dp"
+        android:layout_marginTop="@dimen/margin_fragment_animals_title"
         android:layout_marginEnd="@dimen/margin_fragment_animals_title"
         android:background="@color/animals_fragment_bg"
         android:clipToPadding="false"
         android:orientation="vertical"
         app:cardCornerRadius="9dp"
-        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/help_title_textview"
-        app:spanCount="2" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

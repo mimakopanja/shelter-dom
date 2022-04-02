@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 
 data class Base (
-	@SerializedName("data") val data : List<Data> = arrayListOf()
+	@SerializedName("data") val data : ArrayList<Data> = arrayListOf()
 )

@@ -35,7 +35,7 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
-    <style name="H4" parent="@style/TextAppearance.Material3.BodySmall">>
+    <style name="H4" parent="@style/TextAppearance.Material3.BodySmall">
         <item name="android:textSize">15sp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/text_dark</item>
