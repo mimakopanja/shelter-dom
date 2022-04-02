@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.ShelterDom" parent="Theme.Material3.Dark.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimary">@color/primary_day_night</item>
         <item name="colorOnPrimary">@color/white</item>
-
+        <item name="android:textColor">@color/text_color_day_night</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowContentOverlay">@null</item>

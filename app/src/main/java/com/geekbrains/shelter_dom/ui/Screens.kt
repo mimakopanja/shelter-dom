@@ -2,9 +2,7 @@ package com.geekbrains.shelter_dom.ui
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
-import com.geekbrains.shelter_dom.ui.fragments.AboutFragment
-import com.geekbrains.shelter_dom.ui.fragments.HelpShelterFragment
-import com.geekbrains.shelter_dom.ui.fragments.MainFragment
+import com.geekbrains.shelter_dom.ui.fragments.*
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 object Screens {
@@ -23,6 +21,18 @@ object Screens {
     class OpenHelpShelterFragment: FragmentScreen {
         override fun createFragment(factory: FragmentFactory): Fragment {
             return HelpShelterFragment.newInstance()
+        }
+    }
+
+    class OpenOurPetsFragment: FragmentScreen {
+        override fun createFragment(factory: FragmentFactory): Fragment {
+            return OurPetsFragment.newInstance()
+        }
+    }
+
+    class OpenContactsFragment: FragmentScreen{
+        override fun createFragment(factory: FragmentFactory): Fragment {
+            return ContactsFragment.newInstance()
         }
     }
 }

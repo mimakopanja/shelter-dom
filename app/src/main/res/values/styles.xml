@@ -2,9 +2,13 @@
 <resources>
 
     <style name="WhitePage" parent="Theme.ShelterDom">
-        <item name="android:background">@color/white</item>
-        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:background">@color/background_day_night</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+    </style>
 
+    <style name="CustomDialogTheme" parent="android:Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
     <style name="LogoTextView">
@@ -14,7 +18,6 @@
 
     <style name="SideMenu" >
         <item name="itemTextColor">@color/primary</item>
-        <item name="itemTextAppearance">@style/CustomTextStyle</item>
     </style>
 
     <style name="ToolbarTheme" parent="Widget.Material3.Toolbar">
@@ -32,6 +35,7 @@
     <style name="H2">
         <item name="fontFamily">@font/butler</item>
         <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
         <item name="android:textAllCaps">true</item>
     </style>
 
@@ -39,6 +43,12 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/text_dark</item>
+    </style>
+
+    <style name="H3" parent="@style/TextAppearance.Material3.BodySmall">>
+        <item name="android:textSize">17sp</item>
+        <item name="fontFamily">@font/butler</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
     </style>
 
     <style name="DescriptionText" parent="TextAppearance.Material3.BodySmall">
@@ -52,7 +62,6 @@
         <item name="android:textAppearance">@style/H4</item>
         <item name="android:textSize">10sp</item>
     </style>
-
 
 
 </resources>

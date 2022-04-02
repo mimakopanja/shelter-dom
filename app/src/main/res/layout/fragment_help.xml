@@ -45,7 +45,7 @@
                         android:layout_margin="20dp"
                         android:text="@string/pet_food"
                         style="@style/ImageLabel"
-                        android:textColor="@color/text_dark"
+                        android:textColor="@color/text_color_day_night"
                         android:drawableTop="@drawable/ic_pet_food" />
 
                     <Button
@@ -55,7 +55,7 @@
                         android:layout_margin="20dp"
                         android:text="@string/transportation"
                         style="@style/ImageLabel"
-                        android:textColor="@color/text_dark"
+                        android:textColor="@color/text_color_day_night"
                         android:drawableTop="@drawable/ic_transportation" />
                 </TableRow>
 
@@ -67,7 +67,7 @@
                         android:layout_weight="1"
                         android:text="@string/toys"
                         style="@style/ImageLabel"
-                        android:textColor="@color/text_dark"
+                        android:textColor="@color/text_color_day_night"
                         android:drawableTop="@drawable/ic_toys" />
 
                     <Button
@@ -77,7 +77,7 @@
                         android:layout_weight="1"
                         android:text="@string/bowls"
                         style="@style/ImageLabel"
-                        android:textColor="@color/text_dark"
+                        android:textColor="@color/text_color_day_night"
                         android:drawableTop="@drawable/ic_bowls_and_cups" />
                 </TableRow>
 
@@ -89,7 +89,7 @@
                         android:layout_weight="1"
                         android:text="@string/shampoos"
                         style="@style/ImageLabel"
-                        android:textColor="@color/text_dark"
+                        android:textColor="@color/text_color_day_night"
                         android:drawableTop="@drawable/ic_shampoos" />
                     <Button
                         android:layout_width="match_parent"
@@ -98,7 +98,7 @@
                         android:layout_weight="1"
                         android:text="@string/vitamins"
                         style="@style/ImageLabel"
-                        android:textColor="@color/text_dark"
+                        android:textColor="@color/text_color_day_night"
                         android:drawableTop="@drawable/ic_vitamins" />
                 </TableRow>
 
@@ -111,7 +111,7 @@
                         android:layout_weight="1"
                         android:text="@string/medicines"
                         style="@style/ImageLabel"
-                        android:textColor="@color/text_dark"
+                        android:textColor="@color/text_color_day_night"
                         android:drawableTop="@drawable/ic_medicines" />
                     <Button
                         android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                         android:layout_weight="1"
                         android:text="@string/collars_leashes"
                         style="@style/ImageLabel"
-                        android:textColor="@color/text_dark"
+                        android:textColor="@color/text_color_day_night"
                         android:drawableTop="@drawable/ic_collars_or_leashes" />
                 </TableRow>
 
@@ -132,7 +132,7 @@
                         android:layout_margin="20dp"
                         android:text="@string/sleeping_area"
                         style="@style/ImageLabel"
-                        android:textColor="@color/text_dark"
+                        android:textColor="@color/text_color_day_night"
                         android:drawableTop="@drawable/ic_sleeping_area" />
                 </TableRow>
 

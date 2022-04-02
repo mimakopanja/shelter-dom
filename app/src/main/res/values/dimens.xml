@@ -8,4 +8,7 @@
     <dimen name="image_300_dp">300dp</dimen>
     <dimen name="margin_50_dp">50dp</dimen>
     <dimen name="margin_100_dp">100dp</dimen>
+    <dimen name="margin_fragment_animals_title">30dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="card_view_corner_radius">25dp</dimen>
 </resources>

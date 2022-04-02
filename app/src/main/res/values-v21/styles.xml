@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <style name="CustomTextStyle" parent="android:TextAppearance.Material.Title">
-        <item name="android:text">center</item>
-        <item name="android:textSize">20sp</item>
-    </style>
-</resources>

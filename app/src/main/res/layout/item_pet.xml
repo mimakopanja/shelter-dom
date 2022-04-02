@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    android:elevation="3dp"
+    app:strokeWidth="0dp"
+    android:backgroundTint="@color/animals_fragment_bg"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:backgroundTint="@color/animals_fragment_bg">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_image_view"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:backgroundTint="@color/animals_fragment_bg"
+            android:layout_margin="8dp"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/item_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/animals_fragment_bg"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center_horizontal"
+            android:textAppearance="@style/H4"
+            tools:text="@tools:sample/full_names" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
