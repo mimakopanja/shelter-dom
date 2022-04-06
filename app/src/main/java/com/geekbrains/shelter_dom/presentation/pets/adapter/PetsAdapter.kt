@@ -1,20 +1,15 @@
 package com.geekbrains.shelter_dom.presentation.pets.adapter
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
+import android.widget.Filter
 import androidx.recyclerview.widget.RecyclerView
-import com.geekbrains.shelter_dom.App
 import com.geekbrains.shelter_dom.IMG_BASE_URL
 import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.pet.model.Data
 import com.geekbrains.shelter_dom.databinding.ItemPetBinding
 import com.geekbrains.shelter_dom.presentation.list.IPetsListPresenter
 import com.geekbrains.shelter_dom.presentation.pets.PetItemView
-import com.geekbrains.shelter_dom.ui.DialogPopup
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 
@@ -64,4 +59,20 @@ class PetsAdapter(
     }
 
     override fun getItemCount() = presenter.getCount()
+
+    fun getFilter(): Filter {
+        return filter
+    }
+
+    private val filter: Filter = object : Filter() {
+        override fun performFiltering(charSequence: CharSequence): FilterResults {
+            val results = FilterResults()
+            presenter.setFilterPetsBySubstring(charSequence as String)
+            return results
+        }
+
+        override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
+            notifyDataSetChanged()
+        }
+    }
 }

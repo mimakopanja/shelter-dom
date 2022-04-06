@@ -1,15 +1,15 @@
 package com.geekbrains.shelter_dom.ui.fragments
 
-import android.app.Activity
+import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.inputmethod.EditorInfo
+import android.widget.SearchView
+import android.widget.TextView
 import com.geekbrains.shelter_dom.App
 import com.geekbrains.shelter_dom.MY_ERROR
-import com.geekbrains.shelter_dom.data.api.NetworkStatus
+import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.api.PetsApiFactory
 import com.geekbrains.shelter_dom.data.pet.repo.PetRepositoryImpl
 import com.geekbrains.shelter_dom.databinding.FragmentOurPetsBinding
@@ -18,10 +18,7 @@ import com.geekbrains.shelter_dom.presentation.pets.PetsPresenter
 import com.geekbrains.shelter_dom.presentation.pets.adapter.PetsAdapter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatFragment
-
 import moxy.ktx.moxyPresenter
-import java.lang.Exception
-import java.lang.Thread.sleep
 
 
 class OurPetsFragment : MvpAppCompatFragment(), PetsView {
@@ -53,6 +50,10 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun init() {
         adapter = PetsAdapter(presenter.petListPresenter)
@@ -67,5 +68,26 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
         Log.e(MY_ERROR, message.message ?: message.stackTraceToString())
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.clear()
+        inflater.inflate(R.menu.search_menu, menu)
+        var searchView = menu.findItem(R.id.action_search)
+            .actionView as SearchView
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
+        val id: Int = searchView.context.resources
+            .getIdentifier("android:id/search_src_text", null, null)
+        val textView = searchView.findViewById<View>(id) as TextView
+        textView.setTextColor(Color.WHITE)
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(s: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(s: String): Boolean {
+                adapter?.getFilter()?.filter(s)
+                return false
+            }
+        })
+    }
 
 }
