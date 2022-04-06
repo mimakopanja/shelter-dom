@@ -18,6 +18,8 @@ import com.geekbrains.shelter_dom.ui.fragments.OurPetsFragment
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.core.Scheduler
 import moxy.MvpPresenter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class PetsPresenter(
     private val petsRepo: PetRepository,
@@ -31,6 +33,29 @@ class PetsPresenter(
     class PetsListPresenter : IPetsListPresenter {
 
         val pets = mutableListOf<Data>()
+        private val fullPets = mutableListOf<Data>()
+
+        override fun setFilterPetsBySubstring(substring: String) {
+
+            val filteredList: MutableList<Data> = ArrayList()
+            if (substring.isEmpty()) {
+                filteredList.addAll(fullPets)
+            } else {
+                val filterPattern = substring.lowercase(Locale.getDefault()).trim { it <= ' ' }
+                for (item in fullPets) {
+                    if (item.name?.lowercase(Locale.getDefault())?.contains(filterPattern) == true) {
+                        filteredList.add(item)
+                    }
+                }
+            }
+            setFilterPets(filteredList)
+        }
+
+        private fun setFilterPets(filteredList: MutableList<Data>) {
+            pets.clear()
+            pets.addAll(filteredList)
+        }
+
         override var itemClickListener: ((PetItemView) -> Unit)? = null
 
         override fun bindView(view: PetItemView) {
@@ -44,6 +69,7 @@ class PetsPresenter(
         fun setPets(list: List<Data>) {
             pets.clear()
             pets.addAll(list)
+            fullPets.addAll(list)
         }
     }
 
