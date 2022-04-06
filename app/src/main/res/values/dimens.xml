@@ -11,4 +11,6 @@
     <dimen name="margin_fragment_animals_title">30dp</dimen>
     <dimen name="margin_8dp">8dp</dimen>
     <dimen name="card_view_corner_radius">25dp</dimen>
+    <dimen name="card_margin_42">42dp</dimen>
+    <dimen name="margin_5dp">5dp</dimen>
 </resources>

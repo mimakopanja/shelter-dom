@@ -47,7 +47,7 @@
 
     <style name="H3" parent="@style/TextAppearance.Material3.BodySmall">>
         <item name="android:textSize">17sp</item>
-        <item name="fontFamily">@font/butler</item>
+        <item name="fontFamily">@font/georgia</item>
         <item name="android:textColor">@color/text_color_day_night</item>
     </style>
 
@@ -62,6 +62,8 @@
         <item name="android:textAppearance">@style/H4</item>
         <item name="android:textSize">10sp</item>
     </style>
+
+
 
 
 </resources>

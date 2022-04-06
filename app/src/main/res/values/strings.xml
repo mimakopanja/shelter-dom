@@ -32,7 +32,7 @@
     <string name="inoculations">Inoculations:</string>
     <string name="diseases">Diseases:</string>
     <string name="parasites">Parasites:</string>
-    <string name="none">None</string>
+    <string name="none">none</string>
     <string name="line">-</string>
     <string name="for_questions_and_suggestions">For questions and suggestions</string>
     <string name="email">email@shelter.com</string>

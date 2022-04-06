@@ -1,18 +1,22 @@
 package com.geekbrains.shelter_dom.presentation.pets
 
 
-import android.util.Log
-import android.widget.Toast
+import android.app.Activity
+import android.content.Intent
+import androidx.core.content.ContextCompat.startActivity
+import com.geekbrains.shelter_dom.App
 import com.geekbrains.shelter_dom.IMG_BASE_URL
+import com.geekbrains.shelter_dom.MainActivity
+import com.geekbrains.shelter_dom.PET_DETAIL_TAG
 import com.geekbrains.shelter_dom.data.pet.model.Data
-import com.geekbrains.shelter_dom.data.pet.model.Pet
 import com.geekbrains.shelter_dom.data.pet.repo.PetRepository
 import com.geekbrains.shelter_dom.presentation.list.IPetsListPresenter
 import com.geekbrains.shelter_dom.presentation.list.PetsView
-import com.geekbrains.shelter_dom.ui.Screens
+import com.geekbrains.shelter_dom.ui.DialogPopup
+import com.geekbrains.shelter_dom.ui.fragments.MainFragment
+import com.geekbrains.shelter_dom.ui.fragments.OurPetsFragment
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.core.Scheduler
-import io.reactivex.rxjava3.disposables.Disposable
 import moxy.MvpPresenter
 
 class PetsPresenter(
@@ -21,6 +25,7 @@ class PetsPresenter(
     private val uiScheduler: Scheduler
 ) : MvpPresenter<PetsView>() {
 
+    val mainFragment = MainFragment()
     val petListPresenter = PetsListPresenter()
 
     class PetsListPresenter : IPetsListPresenter {
@@ -30,8 +35,7 @@ class PetsPresenter(
 
         override fun bindView(view: PetItemView) {
             pets[view.pos].let { pet ->
-                view.showName(pet.name)
-                view.loadImage(IMG_BASE_URL.plus(pet.images.first().path))
+                view.loadPet(pet)
             }
         }
 
@@ -49,6 +53,14 @@ class PetsPresenter(
         startLoading()
         viewState.init()
 
+        petListPresenter.itemClickListener = { itemView ->
+            val pet = petListPresenter.pets[itemView.pos]
+            val intent = Intent(App.INSTANCE.applicationContext, DialogPopup::class.java)
+            intent.putExtra(PET_DETAIL_TAG, pet)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            App.INSTANCE.applicationContext.startActivity(intent)
+        }
+
     }
 
     private fun startLoading() {
@@ -57,7 +69,7 @@ class PetsPresenter(
             .subscribe({ pets ->
                 pets.data?.let { petListPresenter.setPets(it) }
                 viewState.updateList()
-            }, { error -> viewState.showError(error) })
+            }, { error_loading -> viewState.showError(error_loading) })
     }
 
     fun backPressed(): Boolean {

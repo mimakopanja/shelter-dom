@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_300_dp"
         android:layout_above="@+id/splashText"
-        android:src="@drawable/ic_shelter_icon"
+        android:src="@drawable/ic_new_loog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

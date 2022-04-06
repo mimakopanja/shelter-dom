@@ -35,4 +35,10 @@ object Screens {
             return ContactsFragment.newInstance()
         }
     }
+
+/*    class OpenDetail: FragmentScreen{
+        override fun createFragment(factory: FragmentFactory): Fragment {
+            return true
+        }
+    }*/
 }

@@ -1,5 +1,6 @@
 package com.geekbrains.shelter_dom.data.pet.repo
 
+import com.geekbrains.shelter_dom.data.api.NetworkStatus
 import com.geekbrains.shelter_dom.data.api.PetsApi
 import com.geekbrains.shelter_dom.data.pet.model.Data
 import com.geekbrains.shelter_dom.data.pet.model.Pet
@@ -11,7 +12,7 @@ class PetRepositoryImpl(
 ) : PetRepository {
 
     override fun getPets(): Single<Pet> =
-        petsApi.fetchPets().subscribeOn(Schedulers.io())
+            petsApi.fetchPets().subscribeOn(Schedulers.io())
 
 
     override fun getPetById(id: String): Single<Data> =
