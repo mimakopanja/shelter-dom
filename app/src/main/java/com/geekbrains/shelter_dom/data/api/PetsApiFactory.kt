@@ -1,7 +1,6 @@
 package com.geekbrains.shelter_dom.data.api
 
-import com.geekbrains.shelter_dom.BASE_URL
-import com.google.gson.FieldNamingPolicy
+import com.geekbrains.shelter_dom.utils.BASE_URL
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

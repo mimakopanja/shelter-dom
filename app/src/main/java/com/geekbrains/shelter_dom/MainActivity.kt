@@ -3,16 +3,14 @@ package com.geekbrains.shelter_dom
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import com.geekbrains.shelter_dom.databinding.ActivityMainBinding
 import com.geekbrains.shelter_dom.ui.MainView
 import com.geekbrains.shelter_dom.ui.Screens
-import com.geekbrains.shelter_dom.ui.fragments.CustomDialogFragment
+import com.geekbrains.shelter_dom.utils.App
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.google.android.material.navigation.NavigationView
-import moxy.MvpAppCompatActivity
 
 
 class MainActivity : AppCompatActivity(), MainView,

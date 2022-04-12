@@ -6,6 +6,6 @@ import com.geekbrains.shelter_dom.data.pet.model.Pet
 import io.reactivex.rxjava3.core.Single
 
 interface PetRepository {
-    fun getPets(): Single<Pet>
+    fun getPets(page: Int): Single<List<Data>?>?
     fun getPetById(id: String): Single<Data>
 }
