@@ -13,11 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/card_margin_42"
-            app:cardCornerRadius="@dimen/card_view_corner_radius">
+            app:strokeWidth="0dp"
+            app:cardCornerRadius="20dp">
 
             <LinearLayout
                 style="@style/WhitePage"
@@ -190,7 +191,7 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <ImageView
             android:id="@+id/close_btn"

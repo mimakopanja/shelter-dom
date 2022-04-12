@@ -1,25 +1,17 @@
 package com.geekbrains.shelter_dom.presentation.pets
 
 
-import android.app.Activity
-import android.content.Intent
-import androidx.core.content.ContextCompat.startActivity
-import com.geekbrains.shelter_dom.App
-import com.geekbrains.shelter_dom.IMG_BASE_URL
-import com.geekbrains.shelter_dom.MainActivity
-import com.geekbrains.shelter_dom.PET_DETAIL_TAG
 import com.geekbrains.shelter_dom.data.pet.model.Data
 import com.geekbrains.shelter_dom.data.pet.repo.PetRepository
 import com.geekbrains.shelter_dom.presentation.list.IPetsListPresenter
 import com.geekbrains.shelter_dom.presentation.list.PetsView
-import com.geekbrains.shelter_dom.ui.DialogPopup
-import com.geekbrains.shelter_dom.ui.fragments.MainFragment
-import com.geekbrains.shelter_dom.ui.fragments.OurPetsFragment
+import com.geekbrains.shelter_dom.utils.NETWORK_EXCEPTIONS
 import com.github.terrakok.cicerone.Router
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
 import java.util.*
-import kotlin.collections.ArrayList
 
 class PetsPresenter(
     private val petsRepo: PetRepository,
@@ -27,8 +19,8 @@ class PetsPresenter(
     private val uiScheduler: Scheduler
 ) : MvpPresenter<PetsView>() {
 
-    val mainFragment = MainFragment()
     val petListPresenter = PetsListPresenter()
+    private var disposables = CompositeDisposable()
 
     class PetsListPresenter : IPetsListPresenter {
 
@@ -43,7 +35,9 @@ class PetsPresenter(
             } else {
                 val filterPattern = substring.lowercase(Locale.getDefault()).trim { it <= ' ' }
                 for (item in fullPets) {
-                    if (item.name?.lowercase(Locale.getDefault())?.contains(filterPattern) == true) {
+                    if (item.name?.lowercase(Locale.getDefault())
+                            ?.contains(filterPattern) == true
+                    ) {
                         filteredList.add(item)
                     }
                 }
@@ -71,36 +65,56 @@ class PetsPresenter(
             pets.addAll(list)
             fullPets.addAll(list)
         }
+
+        var currentItem: Int = 0
     }
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        startLoading()
+        startLoading(1)
         viewState.init()
 
         petListPresenter.itemClickListener = { itemView ->
+            petListPresenter.currentItem = itemView.pos
             val pet = petListPresenter.pets[itemView.pos]
-            val intent = Intent(App.INSTANCE.applicationContext, DialogPopup::class.java)
-            intent.putExtra(PET_DETAIL_TAG, pet)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            App.INSTANCE.applicationContext.startActivity(intent)
+            viewState.openPetDetails(pet)
         }
 
     }
 
-    private fun startLoading() {
-        petsRepo.getPets()
-            .observeOn(uiScheduler)
-            .subscribe({ pets ->
-                pets.data?.let { petListPresenter.setPets(it) }
-                viewState.updateList()
-            }, { error_loading -> viewState.showError(error_loading) })
+    fun startLoading(page: Int) {
+        petsRepo.getPets(page)
+            ?.retry(3)
+            ?.subscribeOn(uiScheduler)
+            ?.doOnError { viewState.showInternetConnection() }
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.doOnSubscribe { viewState.showProgress() }
+            ?.doFinally{ viewState.hideProgress()}
+            ?.subscribe(
+                {
+                    petListPresenter.pets.addAll(it!!)
+                    viewState.updateList()
+                }, {
+                    viewState.showError(it)
+                    viewState.showInternetConnection()
+                }
+            )?.let {
+                disposables.add(it)
+            }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposables.dispose()
     }
 
     fun backPressed(): Boolean {
         router.exit()
         return true
     }
-}
 
+    fun onViewCreated() {
+        viewState.scrollList(petListPresenter.currentItem)
+    }
+}

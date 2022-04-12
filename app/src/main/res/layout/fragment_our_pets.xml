@@ -1,37 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/WhitePage">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout"
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/animals_fragment_bg"
-        android:theme="@style/WhitePage">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:id="@+id/relative"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/help_title_textview"
+                style="@style/H2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_fragment_animals_title"
+                android:layout_marginTop="@dimen/margin_50_dp"
+                android:layout_marginEnd="@dimen/margin_fragment_animals_title"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:text="@string/animals_fragment_title" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/help_title_textview"
-            style="@style/H2"
-            android:layout_width="match_parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_pets"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/help_title_textview"
+                android:layout_marginStart="@dimen/padding_20"
+                android:layout_marginTop="@dimen/margin_50_dp"
+                android:background="@color/animals_fragment_bg"
+                android:clipToPadding="false"
+                android:layout_centerInParent="true"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/item_pet" />
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:id="@+id/progress_bar_layout"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:indeterminateTint="#F1CDB3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_fragment_animals_title"
-            android:layout_marginTop="@dimen/margin_50_dp"
-            android:layout_marginEnd="@dimen/margin_fragment_animals_title"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            android:text="@string/animals_fragment_title" />
+            android:indeterminateOnly="true"
+            android:layout_marginEnd="@dimen/margin_sixteen"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_100_dp"
+            android:indeterminate="true" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_pets"
@@ -47,12 +78,26 @@
                 app:spanCount="2"
                 tools:listitem="@layout/item_pet" />
 
-        </RelativeLayout>
+        <TextView
+            android:text="Please wait..."
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-        <ProgressBar
-            android:visibility="gone"
-            android:id="@+id/progress_bar"
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/connection_frame"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:src="@drawable/footer_puppy"
             android:layout_width="match_parent"
+
             android:layout_height="match_parent"
             android:backgroundTint="#00000000"
             android:indeterminateTint="@color/primary"
@@ -62,4 +107,18 @@
             app:layout_constraintEnd_toEndOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+            android:layout_height="match_parent"/>
+
+ <!--       <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view_icon"
+            android:layout_width="@dimen/image_300_dp"
+            android:layout_margin="@dimen/margin_sixteen"
+            android:layout_height="@dimen/image_300_dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>-->
+    </FrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
