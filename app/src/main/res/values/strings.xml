@@ -40,4 +40,13 @@
     <string name="visit_text">We are waiting for your visit</string>
     <string name="address_1">1 Central Street, Boston (entrance from the store)</string>
     <string name="address_2">18 South Park, London</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+
+<!--  FilterDialog  -->
+    <string name="type">Type</string>
+    <string name="breed">Breed</string>
+    <string name="filter_by">FILTER BY</string>
+    <string name="reset">Reset</string>
+    <string name="ready">Ready</string>
 </resources>

@@ -16,6 +16,8 @@ import com.geekbrains.shelter_dom.databinding.FragmentOurPetsBinding
 import com.geekbrains.shelter_dom.presentation.list.PetsView
 import com.geekbrains.shelter_dom.presentation.pets.PetsPresenter
 import com.geekbrains.shelter_dom.presentation.pets.adapter.PetsAdapter
+import com.geekbrains.shelter_dom.ui.FilterDialog
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -88,6 +90,15 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
                 return false
             }
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_filter -> {
+                FilterDialog.newInstance().show(requireActivity().supportFragmentManager, "filterDialog")
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }
