@@ -17,7 +17,7 @@
     </style>
 
     <style name="SideMenu" >
-        <item name="itemTextColor">@color/primary</item>
+        <item name="itemTextColor">#F1CDB3</item>
     </style>
 
     <style name="ToolbarTheme" parent="Widget.Material3.Toolbar">
@@ -28,7 +28,7 @@
 
     <style name="ToolbarTitle">
         <item name="fontFamily">@font/martel</item>
-        <item name="android:textColor">@color/primary</item>
+        <item name="android:textColor">#F1CDB3</item>
         <item name="android:textSize">30sp</item>
     </style>
 
@@ -42,7 +42,7 @@
     <style name="H4" parent="@style/TextAppearance.Material3.BodySmall">>
         <item name="android:textSize">15sp</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
     </style>
 
     <style name="H3" parent="@style/TextAppearance.Material3.BodySmall">>
@@ -63,7 +63,22 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
 
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_dialog</item>
+  </style>
+
+    <style name="ButtonOutline" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">#F1CDB3</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+
+    </style>
 
 
 </resources>

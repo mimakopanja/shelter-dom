@@ -1,8 +1,11 @@
 package com.geekbrains.shelter_dom.ui
 
+import android.content.Context
+import android.content.Intent
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.geekbrains.shelter_dom.ui.fragments.*
+import com.github.terrakok.cicerone.androidx.ActivityScreen
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 object Screens {
@@ -35,10 +38,4 @@ object Screens {
             return ContactsFragment.newInstance()
         }
     }
-
-/*    class OpenDetail: FragmentScreen{
-        override fun createFragment(factory: FragmentFactory): Fragment {
-            return true
-        }
-    }*/
 }

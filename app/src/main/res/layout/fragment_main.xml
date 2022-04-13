@@ -14,26 +14,28 @@
         android:gravity="center"
         android:layout_marginStart="@dimen/padding_20"
         android:layout_marginEnd="@dimen/padding_20"
-        android:layout_marginBottom="@dimen/margin_42"
         android:text="@string/not_only_people_need_a_house"
         style="@style/H2"
+        android:textColor="@color/lavender_blush"
+        android:layout_marginBottom="@dimen/card_margin_42"
         app:layout_constraintBottom_toTopOf="@id/main_content_textview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/main_content_textview"
-        android:text="@string/main_context"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
         style="@style/DescriptionText"
-        android:layout_marginBottom="@dimen/margin_sixteen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_sixteen"
         android:layout_marginEnd="@dimen/margin_sixteen"
+        android:gravity="center"
+        android:text="@string/main_context"
         app:layout_constraintBottom_toTopOf="@id/make_friend_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginBottom="@dimen/card_margin_42"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/make_friend_btn"

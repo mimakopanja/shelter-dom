@@ -13,4 +13,5 @@
     <dimen name="card_view_corner_radius">25dp</dimen>
     <dimen name="card_margin_42">42dp</dimen>
     <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="filter_button_padding">10dp</dimen>
 </resources>

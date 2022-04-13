@@ -4,5 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Pet(
     @SerializedName("data")
-    val data: List<Data>? = listOf()
+    val data: List<Data>? = listOf(),
+    val links: Links,
+    val meta: Meta
 )

@@ -4,6 +4,7 @@
     android:layout_height="176dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="top"
+    android:backgroundTint="#00000000"
     android:orientation="vertical"
     android:padding="@dimen/margin_sixteen">
 
