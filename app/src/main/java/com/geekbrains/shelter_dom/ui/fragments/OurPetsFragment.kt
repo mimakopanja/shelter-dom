@@ -23,7 +23,9 @@ import com.geekbrains.shelter_dom.presentation.list.PetsView
 import com.geekbrains.shelter_dom.presentation.pets.PetsPresenter
 import com.geekbrains.shelter_dom.presentation.pets.adapter.EndlessRecyclerViewScrollListener
 import com.geekbrains.shelter_dom.presentation.pets.adapter.PaginationScrollListener
-import com.geekbrains.shelter_dom.presentation.pets.adapter.PetsAdapter
+import com.geekbrains.shelter_dom.presentation.pets.adapter.PetsAdapte
+import com.geekbrains.shelter_dom.ui.FilterDialog
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.geekbrains.shelter_dom.ui.DialogPopup
 import com.geekbrains.shelter_dom.utils.InternetUtils
 import com.geekbrains.shelter_dom.utils.PET_DETAIL_TAG
@@ -137,4 +139,15 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
             }
         })
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_filter -> {
+                FilterDialog.newInstance().show(requireActivity().supportFragmentManager, "filterDialog")
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
 }

@@ -63,10 +63,21 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_dialog</item>
+  </style>
 
     <style name="ButtonOutline" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="strokeColor">#F1CDB3</item>
         <item name="android:textColor">@color/text_color_day_night</item>
+
     </style>
 
 

@@ -63,12 +63,28 @@
             android:layout_marginStart="@dimen/margin_100_dp"
             android:indeterminate="true" />
 
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_pets"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_below="@id/help_title_textview"
+                android:layout_marginStart="@dimen/padding_20"
+                android:layout_marginTop="@dimen/margin_50_dp"
+                android:layout_marginEnd="@dimen/padding_20"
+                android:background="@color/animals_fragment_bg"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/item_pet" />
+
         <TextView
             android:text="Please wait..."
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
 
     </RelativeLayout>
 
@@ -81,6 +97,16 @@
         <ImageView
             android:src="@drawable/footer_puppy"
             android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:backgroundTint="#00000000"
+            android:indeterminateTint="@color/primary"
+            android:indeterminate="true"
+            android:layout_marginTop="@dimen/image_300_dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
             android:layout_height="match_parent"/>
 
  <!--       <com.airbnb.lottie.LottieAnimationView
@@ -93,5 +119,6 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"/>-->
     </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

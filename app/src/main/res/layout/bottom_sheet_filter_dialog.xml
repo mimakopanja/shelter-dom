@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/filter_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="8dp"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvFilterHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/filter_by"
+        style="@style/H2"
+        />
+
+    <include
+        layout="@layout/filter_divider" />
+
+    <LinearLayout
+        android:id="@+id/llTypeFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvTypeFilterHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="11"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical"
+            android:text="@string/type"
+            style="@style/H3"
+            android:textSize="20sp"/>
+
+        <ImageView
+            android:id="@+id/arrowType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:tint="@android:color/black"
+            app:srcCompat="@drawable/ic_arrow_down" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTypeFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <include
+        layout="@layout/filter_divider" />
+
+    <LinearLayout
+        android:id="@+id/llBreedFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvBreedFilterHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/H3"
+            android:layout_weight="11"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical"
+            android:text="@string/breed"
+            android:textSize="20sp"/>
+
+        <ImageView
+            android:id="@+id/arrowBreed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:tint="@android:color/black"
+            app:srcCompat="@drawable/ic_arrow_down" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBreedFilter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <include
+        layout="@layout/filter_divider" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="@dimen/filter_button_padding"
+            android:paddingBottom="@dimen/filter_button_padding"
+            android:text="@string/reset"
+            android:background="@color/primary"
+            android:textColor="@color/primary_dark"
+            style="@style/H3"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingTop="@dimen/filter_button_padding"
+            android:paddingBottom="@dimen/filter_button_padding"
+            android:text="@string/ready"
+            android:background="@color/primary_dark"
+            android:textColor="@color/primary"
+            style="@style/H3"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
