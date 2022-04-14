@@ -5,13 +5,16 @@ import com.geekbrains.shelter_dom.data.pet.model.Data
 import com.geekbrains.shelter_dom.data.pet.repo.PetRepository
 import com.geekbrains.shelter_dom.presentation.list.IPetsListPresenter
 import com.geekbrains.shelter_dom.presentation.list.PetsView
+import com.geekbrains.shelter_dom.utils.App
 import com.geekbrains.shelter_dom.utils.NETWORK_EXCEPTIONS
 import com.geekbrains.shelter_dom.utils.exceptions.ConnectionException
+import com.geekbrains.shelter_dom.utils.isConnected
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
+import okhttp3.internal.wait
 import java.util.*
 
 class PetsPresenter(
@@ -22,7 +25,6 @@ class PetsPresenter(
 
     val petListPresenter = PetsListPresenter()
     private var disposables = CompositeDisposable()
-    private var favoriteEnabled = false
 
     class PetsListPresenter : IPetsListPresenter {
 
@@ -74,7 +76,9 @@ class PetsPresenter(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        startLoading(1)
+        if (!isConnected(App.INSTANCE.applicationContext)) {
+            viewState.noConnection()
+        } else startLoading()
         viewState.init()
 
         petListPresenter.itemClickListener = { itemView ->
@@ -85,12 +89,11 @@ class PetsPresenter(
 
     }
 
-    fun startLoading(page: Int) {
+    private fun startLoading() {
         try {
-            petsRepo.getPets(page)
+            petsRepo.getPets(petListPresenter.currentItem)
                 ?.retry(3)
                 ?.subscribeOn(uiScheduler)
-                ?.doOnError { viewState.showInternetConnection() }
                 ?.observeOn(AndroidSchedulers.mainThread())
                 ?.doOnSubscribe { viewState.showProgress() }
                 ?.doFinally { viewState.hideProgress() }
@@ -99,14 +102,15 @@ class PetsPresenter(
                         petListPresenter.pets.addAll(it!!)
                         viewState.updateList()
                     }, {
+                        viewState.noConnection()
                         viewState.showError(it)
-                        viewState.showInternetConnection()
                     }
                 )?.let {
                     disposables.add(it)
                 }
-        } catch (e: ConnectionException){
+        } catch (e: ConnectionException) {
             viewState.hideProgress()
+            viewState.noConnection()
             viewState.showSnack(e.message)
         }
     }
@@ -123,5 +127,10 @@ class PetsPresenter(
 
     fun onViewCreated() {
         viewState.scrollList(petListPresenter.currentItem)
+    }
+
+    fun nextPage() {
+        petListPresenter.currentItem++
+        startLoading()
     }
 }

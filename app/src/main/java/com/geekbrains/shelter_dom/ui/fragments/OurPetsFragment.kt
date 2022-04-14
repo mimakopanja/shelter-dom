@@ -3,32 +3,23 @@ package com.geekbrains.shelter_dom.ui.fragments
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.geekbrains.shelter_dom.utils.App
-import com.geekbrains.shelter_dom.utils.MY_ERROR
+import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.api.PetsApiFactory
-import com.geekbrains.shelter_dom.data.local.PetDatabase
 import com.geekbrains.shelter_dom.data.pet.model.Data
 import com.geekbrains.shelter_dom.data.pet.repo.PetRepositoryImpl
 import com.geekbrains.shelter_dom.databinding.FragmentOurPetsBinding
 import com.geekbrains.shelter_dom.presentation.list.PetsView
 import com.geekbrains.shelter_dom.presentation.pets.PetsPresenter
-import com.geekbrains.shelter_dom.presentation.pets.adapter.EndlessRecyclerViewScrollListener
-import com.geekbrains.shelter_dom.presentation.pets.adapter.PaginationScrollListener
 import com.geekbrains.shelter_dom.presentation.pets.adapter.PetsAdapter
-import com.geekbrains.shelter_dom.ui.FilterDialog
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.geekbrains.shelter_dom.ui.DialogPopup
-import com.geekbrains.shelter_dom.utils.InternetUtils
+import com.geekbrains.shelter_dom.ui.FilterDialog
+import com.geekbrains.shelter_dom.utils.App
 import com.geekbrains.shelter_dom.utils.PET_DETAIL_TAG
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatFragment
@@ -44,7 +35,6 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
 
     private var adapter: PetsAdapter? = null
     private lateinit var binding: FragmentOurPetsBinding
-    lateinit var scrollListener: EndlessRecyclerViewScrollListener
 
     private val presenter by moxyPresenter {
         PetsPresenter(
@@ -65,7 +55,7 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOurPetsBinding.inflate(inflater, container, false)
-//        binding.animationViewIcon.setAnimation(R.raw.wifi)
+        binding.animationViewIcon.setAnimation(R.raw.wifi)
         return binding.root
     }
 
@@ -77,11 +67,21 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
 
     override fun init() {
         val gridLayoutManager = GridLayoutManager(context, 2)
-        scrollListener = EndlessRecyclerViewScrollListener(
-            (presenter::startLoading),
-            gridLayoutManager
-        )
-        binding.rvPets.addOnScrollListener(scrollListener)
+        binding.rvPets.layoutManager = gridLayoutManager
+
+        binding.rvPets.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val visibleItemCount: Int = gridLayoutManager.childCount
+                val totalItemCount: Int = gridLayoutManager.itemCount
+                val firstVisibleItemPosition: Int = gridLayoutManager.findFirstVisibleItemPosition()
+                if (visibleItemCount + firstVisibleItemPosition >=
+                    totalItemCount && firstVisibleItemPosition >= 0
+                ) {
+                    presenter.nextPage()
+                }
+            }
+        })
         adapter = PetsAdapter(presenter.petListPresenter)
         binding.rvPets.adapter = adapter
     }
@@ -98,8 +98,8 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
         binding.progressBarLayout.visibility = View.GONE
     }
 
-    override fun showInternetConnection() {
-        binding.connectionFrame.visibility = View.VISIBLE
+    override fun noConnection() {
+        binding.connectionLayout.visibility=View.VISIBLE
     }
 
     override fun showSnack(message: String) {
@@ -109,7 +109,6 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
     override fun showError(message: Throwable) {
         showSnack(message.toString())
     }
-
 
     override fun scrollList(currentItem: Int) {
         binding.rvPets.layoutManager?.scrollToPosition(currentItem)
@@ -148,11 +147,10 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_filter -> {
-                FilterDialog.newInstance().show(requireActivity().supportFragmentManager, "filterDialog")
+                FilterDialog.newInstance()
+                    .show(requireActivity().supportFragmentManager, "filterDialog")
             }
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 }

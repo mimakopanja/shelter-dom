@@ -1,6 +1,9 @@
 package com.geekbrains.shelter_dom.utils
 
+import android.content.Context
+import android.net.ConnectivityManager
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -31,6 +34,10 @@ fun View.showSnackBar(
         ourSnackBar.setAction(actionText, it)
     }
     ourSnackBar.show()
-
-
 }
+
+    fun isConnected(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(AppCompatActivity.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = connectivityManager.activeNetworkInfo
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting}

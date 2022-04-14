@@ -12,7 +12,7 @@ interface PetsView: MvpView{
     fun updateList()
     fun showProgress()
     fun hideProgress()
-    fun showInternetConnection()
+    fun noConnection()
     fun showSnack(message: String)
     fun showError(message: Throwable)
     fun scrollList(currentItem: Int)

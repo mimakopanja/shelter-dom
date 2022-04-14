@@ -75,4 +75,5 @@ class PetsAdapter(
             notifyDataSetChanged()
         }
     }
+
 }
