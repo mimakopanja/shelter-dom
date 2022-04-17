@@ -56,8 +56,7 @@ class PetsAdapter(
     override fun getItemCount() = presenter.getCount()
 
     override fun onBindViewHolder(holder: PetsViewHolder, position: Int) {
-        presenter.bindView(holder.apply { pos = position
-        })
+        presenter.bindView(holder.apply { pos = position })
     }
 
     fun getFilter(): Filter {

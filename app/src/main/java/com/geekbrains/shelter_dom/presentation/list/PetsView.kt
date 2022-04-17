@@ -17,6 +17,10 @@ interface PetsView: MvpView{
     fun showError(message: Throwable)
     fun scrollList(currentItem: Int)
 
+    fun updateTypes()
+    fun updateBreeds()
+    fun updateAges()
+
     @Skip
     fun openPetDetails(pet:Data)
 }
