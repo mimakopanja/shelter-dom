@@ -14,7 +14,7 @@
     <string name="close">Close</string>
     <string name="op">Open</string>
     <string name="about_title">About the shelter “Cozy House”</string>
-    <string name="about_description">Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.\n\nWe feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.</string>
+    <string name="about_description" formatted="false">Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.\n\nWe feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.</string>
     <string name="home">Home</string>
     <string name="our_pets">Our pets</string>
     <string name="how_you_can_help_our_shelter">How you can help our shelter</string>
@@ -40,5 +40,17 @@
     <string name="visit_text">We are waiting for your visit</string>
     <string name="address_1">1 Central Street, Boston (entrance from the store)</string>
     <string name="address_2">18 South Park, London</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+
+<!--  FilterDialog  -->
+    <string name="type">Type</string>
+    <string name="breed">Breed</string>
+    <string name="filter_by">FILTER BY</string>
+    <string name="reset">Reset</string>
+    <string name="ready">Ready</string>
+
     <string name="learn_more">Learn More</string>
+    <string name="please_wait">Please wait...</string>
+
 </resources>

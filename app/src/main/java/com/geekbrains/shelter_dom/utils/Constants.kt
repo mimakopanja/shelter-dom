@@ -13,3 +13,4 @@ const val DATABASE_TABLE_NAME = "favorites"
 const val KEY_ID = "id"
 const val PET_NAME = "name"
 const val IMAGE = "image"
+const val VISIBLE_THRESHOLD = 4

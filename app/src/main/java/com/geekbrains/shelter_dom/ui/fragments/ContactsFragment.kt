@@ -31,5 +31,12 @@ class ContactsFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.phoneTv.setOnClickListener {
+            val phone = binding.phoneTv.text
+            val intent: Intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:$phone")
+            startActivity(intent)
+        }
     }
 }

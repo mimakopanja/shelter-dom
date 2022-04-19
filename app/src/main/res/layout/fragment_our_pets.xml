@@ -6,92 +6,90 @@
     android:layout_height="match_parent"
     android:theme="@style/WhitePage">
 
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:id="@+id/relative"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/help_title_textview"
-                style="@style/H2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_fragment_animals_title"
-                android:layout_marginTop="@dimen/margin_50_dp"
-                android:layout_marginEnd="@dimen/margin_fragment_animals_title"
-                android:background="@android:color/transparent"
-                android:gravity="center"
-                android:text="@string/animals_fragment_title" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_pets"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_below="@id/help_title_textview"
-                android:layout_marginStart="@dimen/padding_20"
-                android:layout_marginTop="@dimen/margin_50_dp"
-                android:background="@color/animals_fragment_bg"
-                android:clipToPadding="false"
-                android:layout_centerInParent="true"
-                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/item_pet" />
-
-        </RelativeLayout>
-    </androidx.core.widget.NestedScrollView>
-
     <RelativeLayout
-        android:id="@+id/progress_bar_layout"
-        android:visibility="gone"
-        android:orientation="horizontal"
+        android:id="@+id/relative"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:indeterminateTint="#F1CDB3"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/help_title_textview"
+            style="@style/H2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:indeterminateOnly="true"
-            android:layout_marginEnd="@dimen/margin_sixteen"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/margin_100_dp"
-            android:indeterminate="true" />
+            android:layout_marginStart="@dimen/margin_fragment_animals_title"
+            android:layout_marginTop="@dimen/margin_50_dp"
+            android:layout_marginEnd="@dimen/margin_fragment_animals_title"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="@string/animals_fragment_title"
+            android:textColor="@color/text_color_day_night" />
 
-        <TextView
-            android:text="Please wait..."
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/progressBar"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_pets"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:layout_below="@id/help_title_textview"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/padding_20"
+            android:layout_marginTop="@dimen/margin_50_dp"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/item_pet" />
 
     </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/connection_frame"
+    <RelativeLayout
+        android:id="@+id/progress_bar_layout"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="match_parent">
+        android:layout_height="?attr/actionBarSize"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:src="@drawable/footer_puppy"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_100_dp"
+            android:layout_marginEnd="@dimen/margin_sixteen"
+            android:indeterminate="true"
+            android:indeterminateOnly="true"
+            android:indeterminateTint="#F1CDB3" />
 
- <!--       <com.airbnb.lottie.LottieAnimationView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/progressBar"
+            android:text="@string/please_wait" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/connection_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view_icon"
             android:layout_width="@dimen/image_300_dp"
-            android:layout_margin="@dimen/margin_sixteen"
             android:layout_height="@dimen/image_300_dp"
-            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:scaleType="centerCrop"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true"/>-->
-    </FrameLayout>
+            app:lottie_loop="true" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/animation_view_icon"
+            android:layout_centerHorizontal="true"
+            android:text="Please check your connection!" />
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

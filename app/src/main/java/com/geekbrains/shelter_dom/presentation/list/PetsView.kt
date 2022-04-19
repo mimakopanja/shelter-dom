@@ -12,9 +12,14 @@ interface PetsView: MvpView{
     fun updateList()
     fun showProgress()
     fun hideProgress()
-    fun showInternetConnection()
-    fun showError(message: Throwable)
+    fun noConnection()
+    fun showSnack(message: String)
+    fun showError(message: String)
     fun scrollList(currentItem: Int)
+
+    fun updateTypes()
+    fun updateBreeds()
+    fun updateAges()
 
     @Skip
     fun openPetDetails(pet:Data)

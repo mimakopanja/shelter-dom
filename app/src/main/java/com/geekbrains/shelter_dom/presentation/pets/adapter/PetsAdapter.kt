@@ -9,6 +9,7 @@ import com.geekbrains.shelter_dom.utils.IMG_BASE_URL
 import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.pet.model.Data
 import com.geekbrains.shelter_dom.databinding.ItemPetBinding
+import com.geekbrains.shelter_dom.presentation.filter.age.adapter.AgeAdapter
 import com.geekbrains.shelter_dom.presentation.list.IPetsListPresenter
 import com.geekbrains.shelter_dom.presentation.pets.PetItemView
 import com.squareup.picasso.Picasso
@@ -22,16 +23,20 @@ class PetsAdapter(
     private lateinit var binding: ItemPetBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetsViewHolder {
-        return PetsViewHolder(
-            ItemPetBinding.inflate(
+            binding = ItemPetBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
             )
-        ).apply {
-            itemView.setOnClickListener {
-                presenter.itemClickListener?.invoke(this)
-            }
+            /*          itemView.setOnClickListener {
+                          presenter.itemClickListener?.invoke(this)
+                      }*/
+
+        val holder = PetsAdapter.PetsViewHolder(binding)
+        binding.learnMoreButton.setOnClickListener {
+            presenter.itemClickListener?.invoke(holder)
         }
+
+        return holder
     }
 
     class PetsViewHolder(
@@ -50,14 +55,14 @@ class PetsAdapter(
                 .centerCrop()
                 .into(viewBinding.itemImageView)
         }
+
         override var pos = -1
     }
 
     override fun getItemCount() = presenter.getCount()
 
     override fun onBindViewHolder(holder: PetsViewHolder, position: Int) {
-        presenter.bindView(holder.apply { pos = position
-        })
+        presenter.bindView(holder.apply { pos = position })
     }
 
     fun getFilter(): Filter {
@@ -75,4 +80,5 @@ class PetsAdapter(
             notifyDataSetChanged()
         }
     }
+
 }

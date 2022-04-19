@@ -2,8 +2,11 @@ package com.geekbrains.shelter_dom.data.pet.repo
 
 import com.geekbrains.shelter_dom.data.api.PetsApi
 import com.geekbrains.shelter_dom.data.pet.model.Data
+import com.geekbrains.shelter_dom.data.pet.model.Pet
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import retrofit2.Response
 
 class PetRepositoryImpl(
     private val petsApi: PetsApi
@@ -13,6 +16,7 @@ class PetRepositoryImpl(
         petsApi.fetchPets(page).flatMap { response ->
             Single.just(response.data)
         }?.subscribeOn(Schedulers.io())
+
 
     override fun getPetById(id: String): Single<Data> =
         petsApi.fetchPetById(id).flatMap { response ->
