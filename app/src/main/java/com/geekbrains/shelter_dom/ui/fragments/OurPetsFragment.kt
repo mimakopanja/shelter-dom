@@ -185,7 +185,7 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
             }
 
             override fun onQueryTextChange(s: String): Boolean {
-                adapter?.getFilter()?.filter(s)
+                presenter.searchByString(s)
                 return false
             }
         })

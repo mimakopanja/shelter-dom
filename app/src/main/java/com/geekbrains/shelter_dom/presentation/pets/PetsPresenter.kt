@@ -43,36 +43,13 @@ class PetsPresenter(
     private var filterBreed = ""
     private var filterAgeState = ""
     private var filterParasites = ""
+    private var searchName = ""
 
     private var disposables = CompositeDisposable()
 
     class PetsListPresenter : IPetsListPresenter {
 
         val pets = mutableListOf<Data>()
-        private val fullPets = mutableListOf<Data>()
-
-        override fun setFilterPetsBySubstring(substring: String) {
-
-            val filteredList: MutableList<Data> = ArrayList()
-            if (substring.isEmpty()) {
-                filteredList.addAll(fullPets)
-            } else {
-                val filterPattern = substring.lowercase(Locale.getDefault()).trim { it <= ' ' }
-                for (item in fullPets) {
-                    if (item.name?.lowercase(Locale.getDefault())
-                            ?.contains(filterPattern) == true
-                    ) {
-                        filteredList.add(item)
-                    }
-                }
-            }
-            setFilterPets(filteredList)
-        }
-
-        private fun setFilterPets(filteredList: MutableList<Data>) {
-            pets.clear()
-            pets.addAll(filteredList)
-        }
 
         override var itemClickListener: ((PetItemView) -> Unit)? = null
 
@@ -87,7 +64,6 @@ class PetsPresenter(
         fun setPets(list: List<Data>) {
             pets.clear()
             pets.addAll(list)
-            fullPets.addAll(list)
         }
 
         var currentItem: Int = 0
@@ -179,6 +155,7 @@ class PetsPresenter(
                 filterBreed,
                 filterAgeState,
                 filterParasites,
+                searchName,
                 petListPresenter.currentPage
             )
                 ?.retry(3)
@@ -292,5 +269,12 @@ class PetsPresenter(
 
     fun setParasites(state: String) {
         filterParasites = state
+    }
+
+    fun searchByString(s: String) {
+        searchName = s
+        petListPresenter.setPets(mutableListOf())
+        petListPresenter.currentPage = 1
+        startLoading()
     }
 }

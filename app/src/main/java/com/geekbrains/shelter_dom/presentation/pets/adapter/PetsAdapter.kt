@@ -65,20 +65,4 @@ class PetsAdapter(
         presenter.bindView(holder.apply { pos = position })
     }
 
-    fun getFilter(): Filter {
-        return filter
-    }
-
-    private val filter: Filter = object : Filter() {
-        override fun performFiltering(charSequence: CharSequence): FilterResults {
-            val results = FilterResults()
-            presenter.setFilterPetsBySubstring(charSequence as String)
-            return results
-        }
-
-        override fun publishResults(charSequence: CharSequence, filterResults: FilterResults) {
-            notifyDataSetChanged()
-        }
-    }
-
 }

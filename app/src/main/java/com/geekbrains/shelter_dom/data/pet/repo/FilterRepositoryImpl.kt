@@ -15,9 +15,10 @@ class FilterRepositoryImpl(
         breedName: String,
         agePos: String,
         parasitesState: String,
+        name: String,
         page: Int
     ): Single<List<Data>?>? =
-        petsApi.fetchFilteredPets(typeName, breedName, agePos, parasitesState, page)
+        petsApi.fetchFilteredPets(typeName, breedName, agePos, parasitesState, name, page)
             .flatMap { response ->
                 Single.just(response.data)
         }?.subscribeOn(Schedulers.io())

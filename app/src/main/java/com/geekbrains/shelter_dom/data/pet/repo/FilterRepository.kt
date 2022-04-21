@@ -12,6 +12,7 @@ interface FilterRepository {
         breedName: String,
         agePos: String,
         parasitesState: String,
+        name: String,
         page: Int
     ): Single<List<Data>?>?
     fun getBreeds(): Single<ArrayList<Breed>>

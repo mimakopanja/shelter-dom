@@ -31,6 +31,7 @@ interface PetsApi {
         @Query("breed") breedName: String,
         @Query("age") agePos: String,
         @Query("treatment_of_parasites") parasitesState: String,
+        @Query("name") name: String,
         @Query("page") page: Int
     ): Single<Pet>
 
