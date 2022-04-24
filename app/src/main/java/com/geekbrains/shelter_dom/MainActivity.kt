@@ -37,6 +37,11 @@ class MainActivity : AppCompatActivity(), MainView,
         toggle.syncState()
         binding.navView.setNavigationItemSelectedListener(this)
 
+        binding.registerTextView?.setOnClickListener {
+            App.INSTANCE.router.navigateTo(Screens.OpenAuthFragment())
+            binding.drawerLayout.closeDrawers()
+        }
+
     }
 
     override fun onResume() {
@@ -65,6 +70,4 @@ class MainActivity : AppCompatActivity(), MainView,
         binding.drawerLayout.closeDrawers()
         return true
     }
-
-
 }

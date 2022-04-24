@@ -3,40 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/WhitePage">
+    android:background="@color/white">
 
 
-    <ImageView
-        android:id="@+id/splashImage"
-        android:layout_width="match_parent"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_splash"
+        android:layout_width="@dimen/image_300_dp"
         android:layout_height="@dimen/image_300_dp"
-        android:layout_above="@+id/splashText"
-        android:src="@drawable/ic_new_logo"
+        android:scaleType="centerCrop"
+        app:lottie_autoPlay="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintVertical_bias="0.35"
+        app:lottie_loop="true" />
 
     <TextView
         android:id="@+id/splashText"
         style="@style/H4"
+        android:textColor="@color/text_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="Developed by..."
+        android:text="Developed by"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/splashImage"
+        app:layout_constraintTop_toBottomOf="@+id/animation_splash"
         app:layout_constraintVertical_bias="0.85" />
 
     <TextView
         android:id="@+id/splashText2"
         style="@style/H4"
+        android:textColor="@color/text_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="name"
+        android:text="GeekBrains Team"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/splashText"

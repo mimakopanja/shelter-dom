@@ -18,6 +18,7 @@ val NETWORK_EXCEPTIONS = Arrays.asList<Class<*>>(
     ConnectException::class.java
 )
 
+
 fun formatTime (time:Long):String{
     val date = Date(time * 1000L)
     val sdf = SimpleDateFormat("dd.mm.yyyy", Locale.getDefault())

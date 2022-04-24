@@ -15,5 +15,7 @@
     <dimen name="margin_5dp">5dp</dimen>
     <dimen name="filter_button_padding">10dp</dimen>
     <dimen name="image_150dp">150dp</dimen>
+    <dimen name="margin_big">24dp</dimen>
+    <dimen name="corner_radius_input_text">30dp</dimen>
     <dimen name="user_info_item_margin">18dp</dimen>
 </resources>

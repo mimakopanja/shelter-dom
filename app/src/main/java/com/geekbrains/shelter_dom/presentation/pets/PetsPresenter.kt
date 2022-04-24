@@ -1,12 +1,8 @@
 package com.geekbrains.shelter_dom.presentation.pets
 
 
-import com.geekbrains.shelter_dom.data.pet.model.AgeState
-import com.geekbrains.shelter_dom.data.pet.model.Breed
-import com.geekbrains.shelter_dom.data.pet.model.Data
-import com.geekbrains.shelter_dom.data.pet.model.Type
-import com.geekbrains.shelter_dom.data.pet.repo.FilterRepository
-import com.geekbrains.shelter_dom.data.pet.repo.PetRepository
+import com.geekbrains.shelter_dom.data.pet.model.*
+import com.geekbrains.shelter_dom.data.pet.repo.PetsRepository
 import com.geekbrains.shelter_dom.presentation.filter.age.AgeView
 import com.geekbrains.shelter_dom.presentation.filter.age.IAgeListPresenter
 import com.geekbrains.shelter_dom.presentation.filter.breeds.BreedView
@@ -28,11 +24,11 @@ import moxy.MvpPresenter
 import java.util.*
 
 class PetsPresenter(
-    private val petsRepo: PetRepository,
-    private val filterRepo: FilterRepository,
+    private val filterRepo: PetsRepository,
     private val router: Router,
     private val uiScheduler: Scheduler
 ) : MvpPresenter<PetsView>() {
+    
 
     val petListPresenter = PetsListPresenter()
     val typeListPresenter = TypeListPresenter()
@@ -45,13 +41,17 @@ class PetsPresenter(
     private var filterParasites = ""
     private var searchName = ""
 
+    val meta = mutableListOf<Meta>()
+
     private var disposables = CompositeDisposable()
 
     class PetsListPresenter : IPetsListPresenter {
 
+
         val pets = mutableListOf<Data>()
 
         override var itemClickListener: ((PetItemView) -> Unit)? = null
+        override var onLongClickListener: ((PetItemView) -> Unit)? = null
 
         override fun bindView(view: PetItemView) {
             pets[view.pos].let { pet ->
@@ -74,6 +74,8 @@ class PetsPresenter(
         val breeds = mutableListOf<Breed>()
 
         override var itemClickListener: ((BreedView) -> Unit)? = null
+        override var onLongClickListener: ((BreedView) -> Unit)? = null
+
 
         override fun bindView(view: BreedView) {
             breeds[view.pos].let { breed ->
@@ -88,6 +90,8 @@ class PetsPresenter(
         val types = mutableListOf<Type>()
 
         override var itemClickListener: ((TypeView) -> Unit)? = null
+        override var onLongClickListener: ((TypeView) -> Unit)? = null
+
 
         override fun bindView(view: TypeView) {
             types[view.pos].let { type ->
@@ -102,6 +106,8 @@ class PetsPresenter(
         val ages = mutableListOf<AgeState>()
 
         override var itemClickListener: ((AgeView) -> Unit)? = null
+        override var onLongClickListener: ((AgeView) -> Unit)? = null
+
 
         override fun bindView(view: AgeView) {
             ages[view.pos].let { ageString ->
@@ -146,11 +152,17 @@ class PetsPresenter(
             viewState.openPetDetails(pet)
         }
 
+        petListPresenter.onLongClickListener = { itemView ->
+            petListPresenter.currentItem = itemView.pos
+            val pet = petListPresenter.pets[itemView.pos]
+            viewState.openSlider(pet)
+        }
+
     }
 
-    private fun startLoading() {
+     fun startLoading() {
         try {
-            filterRepo.getFilteredPets(
+            filterRepo.getPets(
                 filterType,
                 filterBreed,
                 filterAgeState,
@@ -158,28 +170,24 @@ class PetsPresenter(
                 searchName,
                 petListPresenter.currentPage
             )
-                ?.retry(3)
+                ?.retry(5)
                 ?.subscribeOn(uiScheduler)
                 ?.observeOn(AndroidSchedulers.mainThread())
-                ?.doOnSubscribe { viewState.showProgress() }
                 ?.doFinally { viewState.hideProgress() }
                 ?.subscribe(
                     {
-                            petListPresenter.pets.addAll(it!!)
-                            viewState.updateList()
+                        petListPresenter.pets.addAll(it.data!!)
+                        meta.addAll(listOf(it.meta))
+                        viewState.updateList()
                     }, {
-//                        viewState.noConnection()
+                        viewState.noConnection()
                         viewState.showError(it.toString())
                     }
                 )?.let {
                     disposables.add(it)
                 }
         } catch (e: ApiExceptions) {
-            if (e.errorCode == 504) {
-                viewState.showSnack("Error")
-            } else {
-                    viewState.showError(e.message)
-            }
+            viewState.showError(e.message)
         }
     }
 
@@ -201,7 +209,6 @@ class PetsPresenter(
                 }
         } catch (e: ConnectionException) {
             viewState.noConnection()
-            viewState.showSnack(e.message)
         }
     }
 
@@ -223,7 +230,6 @@ class PetsPresenter(
                 }
         } catch (e: ConnectionException) {
             viewState.noConnection()
-            viewState.showSnack(e.message)
         }
     }
 
@@ -243,8 +249,10 @@ class PetsPresenter(
     }
 
     fun nextPage() {
-        petListPresenter.currentPage++
-        startLoading()
+        while (petListPresenter.currentPage <= meta.first().last_page!!){
+            petListPresenter.currentPage++
+            startLoading()
+        }
     }
 
     fun loadFilteredPets() {

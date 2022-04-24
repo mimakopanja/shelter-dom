@@ -21,10 +21,13 @@
             app:cardCornerRadius="20dp">
 
             <LinearLayout
+                android:id="@+id/detail_linear_layout"
                 style="@style/WhitePage"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
 
                 <TextView
                     android:id="@+id/pet_name_tv"
@@ -195,9 +198,9 @@
             android:id="@+id/close_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
             android:src="@drawable/ic__close_button" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

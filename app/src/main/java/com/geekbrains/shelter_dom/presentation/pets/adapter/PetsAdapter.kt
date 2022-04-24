@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.shelter_dom.utils.IMG_BASE_URL
 import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.pet.model.Data
+import com.geekbrains.shelter_dom.data.pet.model.Pet
 import com.geekbrains.shelter_dom.databinding.ItemPetBinding
 import com.geekbrains.shelter_dom.presentation.filter.age.adapter.AgeAdapter
 import com.geekbrains.shelter_dom.presentation.list.IPetsListPresenter
@@ -27,13 +28,14 @@ class PetsAdapter(
                 LayoutInflater.from(parent.context),
                 parent, false
             )
-            /*          itemView.setOnClickListener {
-                          presenter.itemClickListener?.invoke(this)
-                      }*/
-
         val holder = PetsAdapter.PetsViewHolder(binding)
+
         binding.learnMoreButton.setOnClickListener {
             presenter.itemClickListener?.invoke(holder)
+        }
+
+        binding.itemImageView.setOnClickListener {
+            presenter.onLongClickListener?.invoke(holder)
         }
 
         return holder
@@ -56,6 +58,7 @@ class PetsAdapter(
                 .into(viewBinding.itemImageView)
         }
 
+
         override var pos = -1
     }
 
@@ -63,6 +66,7 @@ class PetsAdapter(
 
     override fun onBindViewHolder(holder: PetsViewHolder, position: Int) {
         presenter.bindView(holder.apply { pos = position })
+
     }
 
 }

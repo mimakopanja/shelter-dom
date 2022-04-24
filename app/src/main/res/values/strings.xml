@@ -51,6 +51,13 @@
     <string name="ready">Ready</string>
 
     <string name="learn_more">Learn More</string>
-    <string name="please_wait">Please wait...</string>
+    <string name="please_wait">Please wait…</string>
+    <string name="try_again">Please check your connection \nand try again!</string>
+    <string name="no_connection">No connection</string>
+    <string name="login">login</string>
+    <string name="register">register / login</string>
+    <string name="slash">/</string>
+    <string name="welcome">Welcome to Cozy House</string>
+    <string name="fill_form">Please fill out a short form:</string>
 
 </resources>
