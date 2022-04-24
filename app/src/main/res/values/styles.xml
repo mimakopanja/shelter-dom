@@ -67,6 +67,15 @@
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>
 
+    <style name="FabStyle" parent="Widget.Design.FloatingActionButton">
+        <item name="shapeAppearanceOverlay">@style/FabShapeStyle</item>
+        <item name="tint">@color/primary_dark</item>
+        <item name="elevation">4dp</item>
+    </style>
+
+    <style name="FabShapeStyle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">50%</item>
+    </style>
 
     <style name="AppModalStyle"
         parent="Widget.Design.BottomSheet.Modal">
@@ -76,8 +85,33 @@
     <style name="ButtonOutline" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="strokeColor">#F1CDB3</item>
         <item name="android:textColor">@color/text_color_day_night</item>
-
     </style>
 
+    <style name="TextViewUserInfoItemHeader" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">"@color/gray"</item>
+    </style>
+
+    <style name="TextViewUserInfoItemMain" parent="Widget.AppCompat.TextView">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Widget.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <!--<item name="hintTextColor">?attr/colorOnSurface</item>-->   //When you added this line it will applies only one color in normal and activate state i.e colorOnSurface color
+    </style>
+
+    <style name="ThemeOverlay.App.TextInputLayout" parent="">
+        <item name="colorPrimary">@color/primary_dark</item>  //Activated color
+        <item name="colorOnSurface">@color/primary</item>    //Normal color
+        <item name="colorError">@color/primary</item>        //Error color
+
+        //Text Appearance styles
+
+        <!--Note: When setting a materialThemeOverlay on a custom TextInputLayout style, don’t forget to set editTextStyle to either a @style/Widget.MaterialComponents.TextInputEditText.* style or to a custom one that inherits from that.
+        The TextInputLayout styles set materialThemeOverlay that overrides editTextStyle with the specific TextInputEditText style needed. Therefore, you don’t need to specify a style tag on the edit text.-->
+        <item name="editTextStyle">@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox</item>
+    </style>
 
 </resources>
