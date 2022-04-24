@@ -64,8 +64,8 @@
 
             <Button
                 android:id="@+id/learn_more_button"
-                style="@style/ButtonOutline"
                 android:layout_width="wrap_content"
+                style="@style/ButtonOutline"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_sixteen"
                 android:text="@string/learn_more"

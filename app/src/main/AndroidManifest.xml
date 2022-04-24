@@ -29,14 +29,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"/>
         <activity
             android:name=".ui.DialogPopup"
             android:label="@string/app_name"
             android:theme="@style/Theme.ShelterDom.PopUpWindowTheme"/>
-
 
     </application>
 

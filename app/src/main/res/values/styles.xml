@@ -4,6 +4,13 @@
     <style name="WhitePage" parent="Theme.ShelterDom">
         <item name="android:background">@color/background_day_night</item>
         <item name="android:textColor">@color/text_color_day_night</item>
+        <item name="textInputStyle">@style/InputBox</item>
+    </style>
+
+    <style name="GreyPage" parent="Theme.ShelterDom">
+        <item name="android:background">@color/animals_fragment_bg</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+        <item name="textInputStyle">@style/InputBox</item>
     </style>
 
     <style name="CustomDialogTheme" parent="android:Theme.Dialog">
@@ -16,7 +23,7 @@
         <item name="android:textColor">@color/primary</item>
     </style>
 
-    <style name="SideMenu" >
+    <style name="SideMenu">
         <item name="itemTextColor">#F1CDB3</item>
     </style>
 
@@ -62,22 +69,28 @@
         <item name="android:textSize">10sp</item>
     </style>
 
-    <style name="AppBottomSheetDialogTheme"
-        parent="Theme.Design.Light.BottomSheetDialog">
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
     </style>
 
 
-    <style name="AppModalStyle"
-        parent="Widget.Design.BottomSheet.Modal">
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/rounded_dialog</item>
-  </style>
-
-    <style name="ButtonOutline" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="strokeColor">#F1CDB3</item>
-        <item name="android:textColor">@color/text_color_day_night</item>
-
     </style>
 
+    <style name="ButtonOutline" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">#F1CDB3</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+    </style>
 
+    <style name="InputBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/text_dark</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/corner_radius_input_text</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/corner_radius_input_text</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/corner_radius_input_text</item>
+        <item name="boxCornerRadiusTopStart">@dimen/corner_radius_input_text</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="colorOnSurface">@android:color/transparent</item>
+    </style>
 </resources>

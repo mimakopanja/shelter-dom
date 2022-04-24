@@ -3,5 +3,4 @@
     <color name="primary">@color/primary_dark</color>
     <color name="text_color">@color/lavender_blush</color>
     <color name="background_color">@color/primary_dark</color>
-    <color name="animals_fragment_bg">@color/primary_dark</color>
 </resources>

@@ -4,19 +4,20 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.*
 import android.view.inputmethod.EditorInfo
-import android.widget.CheckBox
-import android.widget.SearchView
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.geekbrains.shelter_dom.MainActivity
 import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.api.PetsApiFactory
 import com.geekbrains.shelter_dom.data.pet.model.Data
-import com.geekbrains.shelter_dom.data.pet.repo.FilterRepositoryImpl
-import com.geekbrains.shelter_dom.data.pet.repo.PetRepositoryImpl
+import com.geekbrains.shelter_dom.data.pet.repo.PetsRepositoryImpl
 import com.geekbrains.shelter_dom.databinding.BottomSheetFilterDialogBinding
 import com.geekbrains.shelter_dom.databinding.FragmentOurPetsBinding
 import com.geekbrains.shelter_dom.presentation.filter.age.adapter.AgeAdapter
@@ -25,9 +26,9 @@ import com.geekbrains.shelter_dom.presentation.filter.types.adapter.TypeAdapter
 import com.geekbrains.shelter_dom.presentation.list.PetsView
 import com.geekbrains.shelter_dom.presentation.pets.PetsPresenter
 import com.geekbrains.shelter_dom.presentation.pets.adapter.PetsAdapter
-import com.geekbrains.shelter_dom.ui.DialogPopup
+import com.geekbrains.shelter_dom.ui.Screens
 import com.geekbrains.shelter_dom.utils.App
-import com.geekbrains.shelter_dom.utils.PET_DETAIL_TAG
+import com.geekbrains.shelter_dom.utils.SPLASH_DISPLAY_LENGTH
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -56,8 +57,7 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
 
     private val presenter by moxyPresenter {
         PetsPresenter(
-            PetRepositoryImpl(PetsApiFactory.api),
-            FilterRepositoryImpl(PetsApiFactory.api),
+            PetsRepositoryImpl(PetsApiFactory.api),
             App.INSTANCE.router,
             AndroidSchedulers.mainThread()
         )
@@ -74,7 +74,7 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOurPetsBinding.inflate(inflater, container, false)
-        binding.animationViewIcon.setAnimation(R.raw.wifi)
+        binding.animationViewIcon.setAnimation(R.raw.cat)
         return binding.root
     }
 
@@ -83,10 +83,9 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
         setHasOptionsMenu(true)
     }
 
-
     override fun init() {
         val orientation = resources.configuration.orientation
-        if (orientation == Configuration.ORIENTATION_PORTRAIT){
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             layoutManager = GridLayoutManager(context, 2)
             binding.rvPets.layoutManager = layoutManager
         } else {
@@ -94,15 +93,19 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
             binding.rvPets.layoutManager = layoutManager
         }
 
+        binding.refreshLayout?.setOnRefreshListener {
+            presenter.startLoading()
+            binding.refreshLayout!!.isRefreshing = false
+        }
+
+
         binding.rvPets.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val visibleItemCount: Int = layoutManager.childCount
                 val totalItemCount: Int = layoutManager.itemCount
-                val firstVisibleItemPosition: Int = layoutManager.findFirstVisibleItemPosition()
-                if (visibleItemCount + firstVisibleItemPosition >=
-                    totalItemCount && firstVisibleItemPosition >= 0
-                ) {
+                val lastVisibleItem: Int = layoutManager.findLastVisibleItemPosition()
+                if (totalItemCount <= (lastVisibleItem + visibleItemCount)) {
                     presenter.nextPage()
                 }
             }
@@ -149,23 +152,16 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
         binding.connectionLayout.visibility = View.VISIBLE
     }
 
-    override fun showSnack(message: String) {
-        showSnack(message)
-    }
-
     override fun showError(message: String) {
-        showSnack(message.toString())
-    }
-
-    override fun scrollList(currentItem: Int) {
-        binding.rvPets.layoutManager?.scrollToPosition(currentItem)
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     override fun openPetDetails(pet: Data) {
-        val intent = Intent(App.INSTANCE.applicationContext, DialogPopup::class.java)
-        intent.putExtra(PET_DETAIL_TAG, pet)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        App.INSTANCE.applicationContext.startActivity(intent)
+        App.INSTANCE.router.navigateTo(Screens.OpenDetails(pet))
+    }
+
+    override fun openSlider(pet: Data) {
+        App.INSTANCE.router.navigateTo(Screens.OpenImageSlider(pet))
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

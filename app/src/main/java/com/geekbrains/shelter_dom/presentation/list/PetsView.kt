@@ -13,9 +13,7 @@ interface PetsView: MvpView{
     fun showProgress()
     fun hideProgress()
     fun noConnection()
-    fun showSnack(message: String)
     fun showError(message: String)
-    fun scrollList(currentItem: Int)
 
     fun updateTypes()
     fun updateBreeds()
@@ -23,4 +21,7 @@ interface PetsView: MvpView{
 
     @Skip
     fun openPetDetails(pet:Data)
+
+    @Skip
+    fun openSlider(pet:Data)
 }
