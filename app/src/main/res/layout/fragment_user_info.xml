@@ -9,9 +9,9 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/llUserMainInfo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:orientation="vertical"
-        android:background="@color/primary_dark"
+        android:background="@drawable/ic_start_screen_gradient_background"
         android:paddingStart="20dp"
         android:paddingEnd="12dp"
         android:paddingTop="16dp"
@@ -23,18 +23,17 @@
             android:id="@+id/tvUserFullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/primary"
             android:textSize="24sp"
-
-            tools:text="Ivan Ivanov"/>
+            android:text="Ivan Ivanov"
+            style="@style/H3"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/primary"
 
-            tools:text="ivanivanov@mail.ru" />
+            android:text="ivanivanov@mail.ru" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -42,7 +41,7 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginEnd="24dp"
-        tools:src="@drawable/ic_account"
+        android:src="@drawable/ic_account"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llUserMainInfo"
@@ -94,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                tools:text="ivanovi"
+                android:text="ivanovi"
                 style="@style/TextViewUserInfoItemMain"
                 app:layout_constraintStart_toEndOf="@id/fabUserNickname"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -133,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                tools:text="+79995558888"
+                android:text="+79995558888"
                 style="@style/TextViewUserInfoItemMain"
                 app:layout_constraintStart_toEndOf="@id/fabUserPhone"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -173,7 +172,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                tools:text="01.01.1999"
+                android:text="01.01.1999"
                 style="@style/TextViewUserInfoItemMain"
                 app:layout_constraintStart_toEndOf="@id/fabUserBirthday"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -212,7 +211,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                tools:text="Moscow"
+                android:text="Moscow"
                 style="@style/TextViewUserInfoItemMain"
                 app:layout_constraintStart_toEndOf="@id/fabUserAddress"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -251,7 +250,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                tools:text="Love animals"
+                android:text="Love animals"
                 style="@style/TextViewUserInfoItemMain"
                 app:layout_constraintStart_toEndOf="@id/fabUserAboutMe"
                 app:layout_constraintBottom_toBottomOf="parent"

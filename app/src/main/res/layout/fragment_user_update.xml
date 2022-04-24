@@ -11,7 +11,7 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="24dp"
-        tools:src="@drawable/ic_account"
+        android:src="@drawable/ic_account"
         android:layout_gravity="center_horizontal"
 
         app:layout_constraintTop_toTopOf="parent"
@@ -45,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Name"
+            style="@style/UserTextInputLayout"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -58,6 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
+            style="@style/UserTextInputLayout"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -71,6 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nickname"
+            style="@style/UserTextInputLayout"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -84,6 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone number"
+            style="@style/UserTextInputLayout"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -97,6 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Birthday"
+            style="@style/UserTextInputLayout"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -110,6 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="About me"
+            style="@style/UserTextInputLayout"
             >
 
             <com.google.android.material.textfield.TextInputEditText

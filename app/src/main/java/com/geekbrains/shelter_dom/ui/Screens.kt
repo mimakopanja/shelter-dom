@@ -68,4 +68,16 @@ object Screens {
             return AuthFragment.newInstance()
         }
     }
+
+    class OpenUserFragment : FragmentScreen {
+        override fun createFragment(factory: FragmentFactory): Fragment {
+            return UserFragment.newInstance()
+        }
+    }
+
+    class OpenUserUpdateFragment : FragmentScreen {
+        override fun createFragment(factory: FragmentFactory): Fragment {
+            return UserUpdateFragment.newInstance()
+        }
+    }
 }

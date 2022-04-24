@@ -55,18 +55,29 @@
             android:layout_width="match_parent"
             android:layout_height="?android:actionBarSize"
             android:layout_gravity="bottom"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/register_text_view"
                 style="@style/H4"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="9"
                 android:layout_marginEnd="@dimen/margin_sixteen"
                 android:layout_marginBottom="@dimen/margin_8dp"
+                android:gravity="center"
                 android:text="@string/register"
                 android:textColor="@color/primary" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivOpenUser"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="2"
+                android:layout_marginBottom="@dimen/margin_8dp"
+                android:layout_marginEnd="@dimen/margin_sixteen"
+                android:src="@drawable/ic_account"/>
 
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
