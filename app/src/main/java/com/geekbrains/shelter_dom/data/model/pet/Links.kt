@@ -1,4 +1,4 @@
-package com.geekbrains.shelter_dom.data.pet.model
+package com.geekbrains.shelter_dom.data.model.pet
 
 data class Links(
     val first: String? = "",

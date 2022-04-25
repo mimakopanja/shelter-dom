@@ -51,11 +51,12 @@
         app:menu="@menu/side_menu"
         tools:visibility="visible">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/linear_login_reg"
             android:layout_width="match_parent"
             android:layout_height="?android:actionBarSize"
             android:layout_gravity="bottom"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
@@ -63,11 +64,20 @@
                 style="@style/H4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_sixteen"
-                android:layout_marginBottom="@dimen/margin_8dp"
                 android:text="@string/register"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:textColor="@color/primary" />
 
-        </LinearLayout>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivOpenUser"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/margin_sixteen"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_account"/>
+
+        </RelativeLayout>
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

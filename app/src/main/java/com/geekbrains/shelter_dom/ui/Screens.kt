@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
-import com.geekbrains.shelter_dom.data.pet.model.Data
+import com.geekbrains.shelter_dom.data.model.pet.Data
 import com.geekbrains.shelter_dom.ui.dialogs.ImageDialog
 import com.geekbrains.shelter_dom.ui.fragments.*
 import com.geekbrains.shelter_dom.ui.fragments.OurPetsFragment
@@ -66,6 +66,18 @@ object Screens {
     class OpenAuthFragment : FragmentScreen {
         override fun createFragment(factory: FragmentFactory): Fragment {
             return AuthFragment.newInstance()
+        }
+    }
+
+    class OpenUserFragment : FragmentScreen {
+        override fun createFragment(factory: FragmentFactory): Fragment {
+            return UserFragment.newInstance()
+        }
+    }
+
+    class OpenUserUpdateFragment : FragmentScreen {
+        override fun createFragment(factory: FragmentFactory): Fragment {
+            return UserUpdateFragment.newInstance()
         }
     }
 }

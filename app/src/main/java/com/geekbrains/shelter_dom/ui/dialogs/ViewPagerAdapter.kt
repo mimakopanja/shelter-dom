@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.geekbrains.shelter_dom.data.pet.model.Data
+import com.geekbrains.shelter_dom.data.model.pet.Data
 import com.geekbrains.shelter_dom.databinding.ImageViewPagerBinding
 import com.geekbrains.shelter_dom.utils.App
 import com.geekbrains.shelter_dom.utils.IMG_BASE_URL

@@ -17,10 +17,9 @@ import android.view.animation.DecelerateInterpolator
 import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.DialogFragment
 import com.geekbrains.shelter_dom.MainActivity
-import com.geekbrains.shelter_dom.data.pet.model.Data
+import com.geekbrains.shelter_dom.data.model.pet.Data
 import com.geekbrains.shelter_dom.databinding.FragmentImagePopupBinding
 import com.geekbrains.shelter_dom.utils.*
-import com.google.android.material.tabs.TabLayoutMediator
 
 class ImageDialog: DialogFragment() {
 

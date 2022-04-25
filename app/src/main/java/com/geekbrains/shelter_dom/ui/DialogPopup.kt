@@ -13,7 +13,7 @@ import android.view.WindowManager
 import android.view.animation.DecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.ColorUtils
-import com.geekbrains.shelter_dom.data.pet.model.Data
+import com.geekbrains.shelter_dom.data.model.pet.Data
 import com.geekbrains.shelter_dom.databinding.CustomDialogFragmentBinding
 import com.geekbrains.shelter_dom.utils.ALPHA
 import com.geekbrains.shelter_dom.utils.ANIMATION_DURATION

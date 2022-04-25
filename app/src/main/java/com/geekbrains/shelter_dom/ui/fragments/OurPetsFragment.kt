@@ -1,23 +1,18 @@
 package com.geekbrains.shelter_dom.ui.fragments
 
-import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.geekbrains.shelter_dom.MainActivity
 import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.api.PetsApiFactory
-import com.geekbrains.shelter_dom.data.pet.model.Data
-import com.geekbrains.shelter_dom.data.pet.repo.PetsRepositoryImpl
+import com.geekbrains.shelter_dom.data.model.pet.Data
+import com.geekbrains.shelter_dom.data.repo.PetsRepositoryImpl
 import com.geekbrains.shelter_dom.databinding.BottomSheetFilterDialogBinding
 import com.geekbrains.shelter_dom.databinding.FragmentOurPetsBinding
 import com.geekbrains.shelter_dom.presentation.filter.age.adapter.AgeAdapter
@@ -28,7 +23,6 @@ import com.geekbrains.shelter_dom.presentation.pets.PetsPresenter
 import com.geekbrains.shelter_dom.presentation.pets.adapter.PetsAdapter
 import com.geekbrains.shelter_dom.ui.Screens
 import com.geekbrains.shelter_dom.utils.App
-import com.geekbrains.shelter_dom.utils.SPLASH_DISPLAY_LENGTH
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -181,7 +175,7 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
             }
 
             override fun onQueryTextChange(s: String): Boolean {
-                adapter?.getFilter()?.filter(s)
+                presenter.searchByString(s)
                 return false
             }
         })

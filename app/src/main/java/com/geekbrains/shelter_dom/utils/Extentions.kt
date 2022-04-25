@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.geekbrains.shelter_dom.data.pet.model.AgeState
+import com.geekbrains.shelter_dom.data.model.pet.AgeState
 import com.google.android.material.snackbar.Snackbar
 import java.net.ConnectException
 import java.net.SocketTimeoutException
