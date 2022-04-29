@@ -1,24 +1,25 @@
 package com.geekbrains.shelter_dom
 
 
-import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.fragment.app.FragmentManager
 import com.geekbrains.shelter_dom.databinding.ActivityMainBinding
 import com.geekbrains.shelter_dom.ui.MainView
 import com.geekbrains.shelter_dom.ui.Screens
-import com.geekbrains.shelter_dom.utils.App
+import com.geekbrains.shelter_dom.utils.*
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.google.android.material.navigation.NavigationView
 
 
 class MainActivity : AppCompatActivity(), MainView,
     NavigationView.OnNavigationItemSelectedListener {
+
+
+    private val userSharedPref = SharedPrefManager.getInstance().user
 
     private lateinit var binding: ActivityMainBinding
     private val navigator = AppNavigator(this, R.id.container)
@@ -28,26 +29,38 @@ class MainActivity : AppCompatActivity(), MainView,
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
-        val toggle = ActionBarDrawerToggle(
-            this,
-            binding.drawerLayout,
-            binding.toolbar,
-            R.string.open,
-            R.string.close
-        )
+        val toggle = initActionBar()
+        initSharedPref()
+        openRegisterScreen()
+
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.isDrawerIndicatorEnabled
         toggle.syncState()
         binding.navView.setNavigationItemSelectedListener(this)
 
+
+//        Logout User
+        binding.logoutButton?.onCLick {
+            SharedPrefManager.getInstance().clear()
+            binding.registerTextView?.let { it1 -> setVisibility(it1, true) }
+            setVisibility(binding.logoutButton!!, false)
+            binding.ivOpenUser?.let { it1 -> setVisibility(it1, false) }
+            binding.drawerLayout.closeDrawers()
+            binding.root.showSnackBar("Logged out!", "")
+        }
+
+
+        binding.ivOpenUser?.onCLick {
+            App.INSTANCE.router.replaceScreen(Screens.OpenUserInfoFragment(userSharedPref))
+            binding.drawerLayout.closeDrawers()
+        }
+
         supportFragmentManager.addOnBackStackChangedListener {
             if (supportFragmentManager.backStackEntryCount > 0) {
-                supportActionBar!!.setDisplayHomeAsUpEnabled(true) // show back button
+                supportActionBar!!.setDisplayHomeAsUpEnabled(true) //show back button
                 binding.toolbar.setNavigationOnClickListener { onBackPressed() }
             } else {
-                //show hamburger
-                supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+                supportActionBar!!.setDisplayHomeAsUpEnabled(false) //show hamburger
                 toggle.syncState()
                 binding.toolbar.setNavigationOnClickListener {
                     binding.drawerLayout.openDrawer(
@@ -56,17 +69,35 @@ class MainActivity : AppCompatActivity(), MainView,
                 }
             }
         }
+    }
 
-        binding.registerTextView?.setOnClickListener {
+    private fun openRegisterScreen() {
+        binding.registerTextView?.onCLick {
             App.INSTANCE.router.navigateTo(Screens.OpenAuthFragment())
             binding.drawerLayout.closeDrawers()
         }
+    }
 
-        binding.ivOpenUser?.setOnClickListener {
-            App.INSTANCE.router.navigateTo(Screens.OpenUserFragment())
-            binding.drawerLayout.closeDrawers()
+    private fun initActionBar(): ActionBarDrawerToggle {
+        setSupportActionBar(binding.toolbar)
+        val toggle = ActionBarDrawerToggle(
+            this,
+            binding.drawerLayout,
+            binding.toolbar,
+            R.string.open,
+            R.string.close
+        )
+        return toggle
+    }
+
+    private fun initSharedPref() {
+        if (userSharedPref.isLoggedIn == true) {
+            binding.registerTextView?.let { setVisibility(it, false) }
+            binding.ivOpenUser?.let { setVisibility(it, true) }
+            binding.logoutButton?.let { setVisibility(it, true) }
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-
     }
 
     override fun onResume() {

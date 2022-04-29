@@ -1,4 +1,4 @@
-package com.geekbrains.shelter_dom.data.repo
+package com.geekbrains.shelter_dom.data.repo.pets
 
 import com.geekbrains.shelter_dom.data.api.PetsApi
 import com.geekbrains.shelter_dom.data.model.pet.Breed
@@ -9,7 +9,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class PetsRepositoryImpl(
     private val petsApi: PetsApi
-): PetsRepository {
+) : PetsRepository {
+
     override fun getPets(
         typeName: String,
         breedName: String,
@@ -21,7 +22,7 @@ class PetsRepositoryImpl(
         petsApi.fetchPets(typeName, breedName, agePos, parasitesState, name, page)
             .flatMap { response ->
                 Single.just(response)
-        }?.subscribeOn(Schedulers.io())
+            }?.subscribeOn(Schedulers.io())
 
     override fun getBreeds(): Single<ArrayList<Breed>> =
         petsApi.fetchBreeds().flatMap { response ->

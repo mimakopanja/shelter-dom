@@ -1,10 +1,13 @@
 package com.geekbrains.shelter_dom.ui
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
+import com.geekbrains.shelter_dom.MainActivity
+import com.geekbrains.shelter_dom.data.model.auth.User
 import com.geekbrains.shelter_dom.data.model.pet.Data
 import com.geekbrains.shelter_dom.ui.dialogs.ImageDialog
 import com.geekbrains.shelter_dom.ui.fragments.*
@@ -14,6 +17,14 @@ import com.github.terrakok.cicerone.androidx.ActivityScreen
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 object Screens {
+    class OpenMainActivity: ActivityScreen {
+        override fun createIntent(context: Context): Intent {
+            val intent = Intent(context, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            return intent
+        }
+
+    }
     class OpenHomeFragment : FragmentScreen {
         override fun createFragment(factory: FragmentFactory): Fragment {
             return MainFragment.newInstance()
@@ -60,7 +71,6 @@ object Screens {
         override fun createFragment(factory: FragmentFactory): DialogFragment {
             return ImageDialog.newInstance(petBundle)
         }
-
     }
 
     class OpenAuthFragment : FragmentScreen {
@@ -69,15 +79,16 @@ object Screens {
         }
     }
 
-    class OpenUserFragment : FragmentScreen {
-        override fun createFragment(factory: FragmentFactory): Fragment {
-            return UserFragment.newInstance()
-        }
-    }
-
     class OpenUserUpdateFragment : FragmentScreen {
         override fun createFragment(factory: FragmentFactory): Fragment {
             return UserUpdateFragment.newInstance()
+        }
+    }
+
+    class OpenUserInfoFragment(user: User) : FragmentScreen {
+        private val userBundle = user
+        override fun createFragment(factory: FragmentFactory): UserFragment {
+            return UserFragment().newInstance(userBundle)
         }
     }
 }

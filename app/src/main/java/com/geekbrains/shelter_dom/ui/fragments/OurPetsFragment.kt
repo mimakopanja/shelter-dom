@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.api.PetsApiFactory
 import com.geekbrains.shelter_dom.data.model.pet.Data
-import com.geekbrains.shelter_dom.data.repo.PetsRepositoryImpl
+import com.geekbrains.shelter_dom.data.repo.pets.PetsRepositoryImpl
 import com.geekbrains.shelter_dom.databinding.BottomSheetFilterDialogBinding
 import com.geekbrains.shelter_dom.databinding.FragmentOurPetsBinding
 import com.geekbrains.shelter_dom.presentation.filter.age.adapter.AgeAdapter
@@ -23,6 +23,7 @@ import com.geekbrains.shelter_dom.presentation.pets.PetsPresenter
 import com.geekbrains.shelter_dom.presentation.pets.adapter.PetsAdapter
 import com.geekbrains.shelter_dom.ui.Screens
 import com.geekbrains.shelter_dom.utils.App
+import com.geekbrains.shelter_dom.utils.setVisibility
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -118,6 +119,7 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
         filterBinding.rvAgeFilter.adapter = ageAdapter
     }
 
+
     override fun updateList() {
         adapter?.notifyDataSetChanged()
     }
@@ -135,15 +137,24 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
     }
 
     override fun showProgress() {
-        binding.progressBarLayout.visibility = View.VISIBLE
+        setVisibility(binding.progressBarLayout, true)
     }
 
     override fun hideProgress() {
-        binding.progressBarLayout.visibility = View.GONE
+        setVisibility(binding.progressBarLayout, false)
     }
 
     override fun noConnection() {
-        binding.connectionLayout.visibility = View.VISIBLE
+        setVisibility(binding.connectionLayout, false)
+
+    }
+
+    override fun noResult() {
+        binding.animationViewIcon.setAnimation(R.raw.nothing_found)
+        binding.tryAgainTitle?.text = ""
+        binding.tryAgainSubtitle?.text = "No Result Found"
+        binding.tryAgainButton?.visibility = View.GONE
+        setVisibility(binding.connectionLayout, true)
     }
 
     override fun showError(message: String) {

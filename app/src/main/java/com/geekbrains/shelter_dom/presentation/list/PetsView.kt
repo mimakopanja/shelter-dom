@@ -13,6 +13,7 @@ interface PetsView: MvpView{
     fun showProgress()
     fun hideProgress()
     fun noConnection()
+    fun noResult()
     fun showError(message: String)
 
     fun updateTypes()

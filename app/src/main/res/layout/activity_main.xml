@@ -64,12 +64,22 @@
                 style="@style/H4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="@string/register"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:textColor="@color/primary" />
+
+            <TextView
+                android:id="@+id/logout_button"
+                style="@style/H4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/logout"
+                android:visibility="gone"
                 android:textColor="@color/primary" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:visibility="gone"
                 android:id="@+id/ivOpenUser"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

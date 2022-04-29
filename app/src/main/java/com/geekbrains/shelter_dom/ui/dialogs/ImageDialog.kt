@@ -38,7 +38,6 @@ class ImageDialog: DialogFragment() {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

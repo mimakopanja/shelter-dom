@@ -1,4 +1,4 @@
-package com.geekbrains.shelter_dom.data.repo
+package com.geekbrains.shelter_dom.data.repo.pets
 
 import com.geekbrains.shelter_dom.data.model.pet.Breed
 import com.geekbrains.shelter_dom.data.model.pet.Pet
