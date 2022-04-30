@@ -52,12 +52,20 @@
 
     <string name="learn_more">Learn More</string>
     <string name="please_wait">Please wait…</string>
-    <string name="try_again">Please check your connection \nand try again!</string>
-    <string name="no_connection">No connection</string>
+    <string name="try_again">Try Again</string>
+    <string name="connection_subtitle">Try:\n• Checking the network cables, modem or router.\n• Reconnecting to WI-FI</string>
+    <string name="no_connection">No Internet</string>
     <string name="login">login</string>
     <string name="register">register / login</string>
     <string name="slash">/</string>
-    <string name="welcome">Welcome to Cozy House</string>
-    <string name="fill_form">Please fill out a short form:</string>
+    <string name="let_s_get_started">Let\'s get started</string>
+    <string name="create_an_account">Create An Account</string>
+    <string name="name">Name</string>
+    <string name="email_hint">Email</string>
+    <string name="create_account">Create account</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="logout">Logout</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 
 </resources>

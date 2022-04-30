@@ -1,6 +1,6 @@
 package com.geekbrains.shelter_dom.presentation.list
 
-import com.geekbrains.shelter_dom.data.pet.model.Data
+import com.geekbrains.shelter_dom.data.model.pet.Data
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
@@ -13,6 +13,7 @@ interface PetsView: MvpView{
     fun showProgress()
     fun hideProgress()
     fun noConnection()
+    fun noResult()
     fun showError(message: String)
 
     fun updateTypes()
@@ -20,8 +21,8 @@ interface PetsView: MvpView{
     fun updateAges()
 
     @Skip
-    fun openPetDetails(pet:Data)
+    fun openPetDetails(pet: Data)
 
     @Skip
-    fun openSlider(pet:Data)
+    fun openSlider(pet: Data)
 }

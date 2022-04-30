@@ -3,13 +3,10 @@ package com.geekbrains.shelter_dom.presentation.filter.age.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.geekbrains.shelter_dom.data.pet.model.AgeState
-import com.geekbrains.shelter_dom.data.pet.model.Breed
+import com.geekbrains.shelter_dom.data.model.pet.AgeState
 import com.geekbrains.shelter_dom.databinding.ItemFilterBinding
 import com.geekbrains.shelter_dom.presentation.filter.age.AgeView
 import com.geekbrains.shelter_dom.presentation.filter.age.IAgeListPresenter
-import com.geekbrains.shelter_dom.presentation.filter.breeds.BreedView
-import com.geekbrains.shelter_dom.presentation.filter.types.adapter.TypeAdapter
 import kotlinx.android.extensions.LayoutContainer
 
 class AgeAdapter(

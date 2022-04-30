@@ -51,7 +51,8 @@
         app:menu="@menu/side_menu"
         tools:visibility="visible">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/linear_login_reg"
             android:layout_width="match_parent"
             android:layout_height="?android:actionBarSize"
             android:layout_gravity="bottom"
@@ -61,24 +62,32 @@
             <TextView
                 android:id="@+id/register_text_view"
                 style="@style/H4"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="9"
-                android:layout_marginEnd="@dimen/margin_sixteen"
-                android:layout_marginBottom="@dimen/margin_8dp"
-                android:gravity="center"
+                android:layout_centerInParent="true"
                 android:text="@string/register"
                 android:textColor="@color/primary" />
 
+            <TextView
+                android:id="@+id/logout_button"
+                style="@style/H4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/logout"
+                android:visibility="gone"
+                android:textColor="@color/primary" />
+
             <androidx.appcompat.widget.AppCompatImageView
+                android:visibility="gone"
                 android:id="@+id/ivOpenUser"
-                android:layout_width="0dp"
+                android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_weight="2"
-                android:layout_marginBottom="@dimen/margin_8dp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/margin_sixteen"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_account"/>
 
-        </LinearLayout>
+        </RelativeLayout>
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

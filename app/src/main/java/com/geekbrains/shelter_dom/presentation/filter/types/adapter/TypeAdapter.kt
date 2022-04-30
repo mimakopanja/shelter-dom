@@ -3,7 +3,7 @@ package com.geekbrains.shelter_dom.presentation.filter.types.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.geekbrains.shelter_dom.data.pet.model.Type
+import com.geekbrains.shelter_dom.data.model.pet.Type
 import com.geekbrains.shelter_dom.databinding.ItemFilterBinding
 import com.geekbrains.shelter_dom.presentation.filter.types.ITypeListPresenter
 import com.geekbrains.shelter_dom.presentation.filter.types.TypeView

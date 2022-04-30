@@ -1,6 +1,8 @@
-package com.geekbrains.shelter_dom.data.pet.repo
+package com.geekbrains.shelter_dom.data.repo.pets
 
-import com.geekbrains.shelter_dom.data.pet.model.*
+import com.geekbrains.shelter_dom.data.model.pet.Breed
+import com.geekbrains.shelter_dom.data.model.pet.Pet
+import com.geekbrains.shelter_dom.data.model.pet.Type
 import io.reactivex.rxjava3.core.Single
 
 interface PetsRepository {

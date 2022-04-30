@@ -1,18 +1,17 @@
 package com.geekbrains.shelter_dom.presentation.pets.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.shelter_dom.utils.IMG_BASE_URL
 import com.geekbrains.shelter_dom.R
-import com.geekbrains.shelter_dom.data.pet.model.Data
-import com.geekbrains.shelter_dom.data.pet.model.Pet
+import com.geekbrains.shelter_dom.data.model.pet.Data
 import com.geekbrains.shelter_dom.databinding.ItemPetBinding
-import com.geekbrains.shelter_dom.presentation.filter.age.adapter.AgeAdapter
 import com.geekbrains.shelter_dom.presentation.list.IPetsListPresenter
 import com.geekbrains.shelter_dom.presentation.pets.PetItemView
+import com.geekbrains.shelter_dom.utils.App
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 
@@ -22,6 +21,7 @@ class PetsAdapter(
 ) : RecyclerView.Adapter<PetsAdapter.PetsViewHolder>() {
 
     private lateinit var binding: ItemPetBinding
+    private var lastPosition: Int = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetsViewHolder {
             binding = ItemPetBinding.inflate(
@@ -66,6 +66,15 @@ class PetsAdapter(
 
     override fun onBindViewHolder(holder: PetsViewHolder, position: Int) {
         presenter.bindView(holder.apply { pos = position })
+
+        val animation: Animation = AnimationUtils.loadAnimation(
+            App.INSTANCE.applicationContext,
+            if (position > lastPosition){
+                R.anim.scale_up
+            } else R.anim.scale_up
+        )
+        holder.itemView.startAnimation(animation)
+        lastPosition = holder.bindingAdapterPosition
 
     }
 

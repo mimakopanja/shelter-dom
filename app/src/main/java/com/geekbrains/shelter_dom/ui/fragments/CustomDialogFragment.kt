@@ -14,9 +14,8 @@ class CustomDialogFragment: DialogFragment() {
     private lateinit var binding: CustomDialogFragmentBinding
 
     companion object {
-
-        fun newInstance(bundle: Bundle): com.geekbrains.shelter_dom.ui.fragments.CustomDialogFragment {
-            val fragment = com.geekbrains.shelter_dom.ui.fragments.CustomDialogFragment()
+        fun newInstance(bundle: Bundle): CustomDialogFragment {
+            val fragment = CustomDialogFragment()
             fragment.arguments = bundle
             return fragment
         }
@@ -34,7 +33,6 @@ class CustomDialogFragment: DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState)
-
     }
 
     override fun onStart() {
@@ -43,6 +41,5 @@ class CustomDialogFragment: DialogFragment() {
         dialog?.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent);
     }
-
 }
 

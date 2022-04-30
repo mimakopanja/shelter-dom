@@ -7,6 +7,7 @@
     android:scrollbars="vertical">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingStart="@dimen/margin_sixteen"
@@ -19,6 +20,7 @@
             android:id="@+id/register_form"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_sixteen"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -27,13 +29,15 @@
                 style="@style/H4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:paddingHorizontal="@dimen/margin_8dp"
-                android:text="@string/welcome"
-                android:textSize="16sp" />
+                android:text="@string/let_s_get_started"
+                android:textSize="@dimen/text_25sp" />
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:textAlignment="center"
                 android:layout_marginStart="@dimen/margin_8dp"
                 android:layout_toEndOf="@id/text_welcome"
                 android:src="@drawable/paw" />
@@ -43,12 +47,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_welcome"
-                android:layout_marginTop="@dimen/margin_8dp"
-                android:layout_marginBottom="@dimen/margin_8dp"
+                android:layout_marginTop="@dimen/margin_sixteen"
+                android:layout_marginBottom="@dimen/margin_sixteen"
                 android:paddingHorizontal="@dimen/margin_8dp"
-                android:text="@string/fill_form"
+                android:text="@string/create_an_account"
                 android:textColor="@color/text_dark"
-                android:textSize="@dimen/text_12" />
+                android:textSize="@dimen/text_20sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_layout"
@@ -63,11 +67,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_big"
-                android:hint="Name"
+                android:hint="@string/name"
+                android:maxLines="1"
                 android:layout_marginBottom="@dimen/margin_8dp"
                 android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email_layout"
                 style="@style/InputBox"
@@ -79,11 +85,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/register_email"
                 style="@style/InputBox"
+                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/register_name"
                 android:layout_marginTop="@dimen/margin_big"
-                android:hint="Email"
+                android:hint="@string/email_hint"
                 android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,22 +106,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_big"
-                android:hint="Password"
+                android:maxLines="1"
+                android:hint="@string/password"
                 android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/password2_layout"
+                style="@style/InputBox"
+                android:layout_width="match_parent"
+                android:layout_below="@id/password_layout"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_password2"
+                    android:layout_width="match_parent"
+                    android:maxLines="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_big"
+                    android:hint="@string/confirm_password"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <Button
-                android:id="@+id/button_registration"
+                android:id="@+id/button_create_account"
                 style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_big"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/register"
+                android:text="@string/create_account"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:layout_below="@id/password_layout"/>
+                android:layout_below="@id/password2_layout"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -151,11 +176,12 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_name"
                 style="@style/InputBox"
+                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
                 android:layout_marginTop="@dimen/margin_big"
-                android:hint="Username"
-                android:inputType="textPersonName" />
+                android:hint="@string/username" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -171,17 +197,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_big"
-                android:hint="Password"
+                android:maxLines="1"
+                android:hint="@string/password"
                 android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/button_login"
-                style="@style/Widget.MaterialComponents.Button"
+                style="@style/ButtonInactive"
+                android:maxLines="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/password_login_layout"
-                android:layout_marginTop="@dimen/margin_big"
                 android:clickable="true"
                 android:focusable="true"
                 android:text="@string/login"
@@ -209,6 +236,34 @@
                 android:layout_below="@id/button_login"
                 android:layout_toEndOf="@id/please"/>
 
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/progress_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/margin_100_dp"
+                android:layout_marginEnd="@dimen/margin_sixteen"
+                android:indeterminate="true"
+                android:indeterminateOnly="true"
+                android:indeterminateTint="#F1CDB3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/progressBar"
+                android:text="@string/please_wait" />
 
         </RelativeLayout>
 

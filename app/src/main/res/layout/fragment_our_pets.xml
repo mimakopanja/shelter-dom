@@ -29,21 +29,20 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_sixteen"
             android:layout_below="@id/help_title_textview">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refresh_layout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_sixteen"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/margin_8dp"
             android:layout_marginTop="@dimen/margin_sixteen"
             android:clipToPadding="false">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_pets"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:spanCount="2"
@@ -100,22 +99,36 @@
             app:lottie_loop="true" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/try_again"
+            android:id="@+id/try_again_title"
+            android:textSize="@dimen/text_20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/animation_view_icon"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/margin_sixteen"
             android:text="@string/no_connection"
             android:textAlignment="center"
             android:textStyle="bold" />
 
         <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/try_again_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/try_again"
+            android:layout_below="@id/try_again_title"
+            android:layout_marginBottom="@dimen/margin_sixteen"
+            android:layout_centerHorizontal="true"
+            android:text="@string/connection_subtitle"
+            android:textAlignment="textStart" />
+
+        <Button
+            android:id="@+id/try_again_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="@string/try_again"
-            android:textAlignment="center" />
+            style="@style/ButtonOutline"
+            android:layout_marginBottom="@dimen/margin_42"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

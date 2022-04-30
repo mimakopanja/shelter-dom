@@ -1,4 +1,4 @@
-package com.geekbrains.shelter_dom.data.pet.model
+package com.geekbrains.shelter_dom.data.model.pet
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

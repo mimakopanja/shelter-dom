@@ -1,39 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="@style/WhitePage">
+    android:background="@drawable/ic_profile_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_layout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/llUserMainInfo"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="150dp"
         android:orientation="vertical"
-        android:background="@drawable/ic_start_screen_gradient_background"
         android:paddingStart="20dp"
-        android:paddingEnd="12dp"
         android:paddingTop="16dp"
+        android:paddingEnd="12dp"
         android:paddingBottom="48dp"
-
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvUserFullName"
+            style="@style/H3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/primary"
-            android:textSize="24sp"
-            android:text="Ivan Ivanov"
-            style="@style/H3"/>
+            tools:text="Ivan Ivanov"
+            android:maxLines="1"
+            android:textAllCaps="true"
+            android:textColor="@color/text_color_day_night"
+            android:textSize="24sp" />
 
         <TextView
+            android:id="@+id/header_email"
+            style="@style/H4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/primary"
-
-            android:text="ivanivanov@mail.ru" />
+            tools:text="ivanivanov@mail.ru"
+            android:maxLines="1"
+            android:textColor="@color/text_color_day_night"
+            android:textSize="11sp" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -41,26 +50,25 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginEnd="24dp"
-        android:src="@drawable/ic_account"
-
+        app:layout_constraintBottom_toBottomOf="@id/llUserMainInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llUserMainInfo"
-        app:layout_constraintBottom_toBottomOf="@id/llUserMainInfo"
-        />
+        tools:src="@tools:sample/avatars" />
+
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/llUserFabs"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
+        android:layout_marginStart="@dimen/margin_42"
+        android:orientation="vertical"
         app:divider="@drawable/linearlayout_divider"
-        app:showDividers="middle"
-
-        app:layout_constraintTop_toBottomOf="@id/ivUser"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivUser"
+        app:showDividers="middle">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -68,36 +76,35 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabUserNickname"
+                style="@style/FabStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_person"
-                app:fabSize="mini"
-                style="@style/FabStyle"
                 android:backgroundTint="@color/white"
-
+                app:fabSize="mini"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_person" />
 
             <TextView
                 android:id="@+id/tvUserNicknameHeader"
+                style="@style/TextViewUserInfoItemHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="Nickname"
-                style="@style/TextViewUserInfoItemHeader"
                 app:layout_constraintStart_toEndOf="@id/fabUserNickname"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/user_info_name"
+                style="@style/TextViewUserInfoItemMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="ivanovi"
-                style="@style/TextViewUserInfoItemMain"
-                app:layout_constraintStart_toEndOf="@id/fabUserNickname"
+                android:maxLines="1"
+                tools:text="ivanovi"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintStart_toEndOf="@id/fabUserNickname" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -107,36 +114,36 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabUserPhone"
+                style="@style/FabStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_phone"
-                app:fabSize="mini"
-                style="@style/FabStyle"
                 android:backgroundTint="@color/white"
-
+                app:fabSize="mini"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_phone" />
 
             <TextView
                 android:id="@+id/tvUserPhoneHeader"
+                style="@style/TextViewUserInfoItemHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="Phone number"
-                style="@style/TextViewUserInfoItemHeader"
                 app:layout_constraintStart_toEndOf="@id/fabUserPhone"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/user_phone_number"
+                style="@style/TextViewUserInfoItemMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="+79995558888"
-                style="@style/TextViewUserInfoItemMain"
-                app:layout_constraintStart_toEndOf="@id/fabUserPhone"
+                android:maxLines="1"
+                tools:text="+79995558888"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintStart_toEndOf="@id/fabUserPhone" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -147,36 +154,36 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabUserBirthday"
+                style="@style/FabStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_calendar"
-                app:fabSize="mini"
-                style="@style/FabStyle"
                 android:backgroundTint="@color/white"
-
+                app:fabSize="mini"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_calendar" />
 
             <TextView
                 android:id="@+id/tvUserBirthdayHeader"
+                style="@style/TextViewUserInfoItemHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="Birthday"
-                style="@style/TextViewUserInfoItemHeader"
                 app:layout_constraintStart_toEndOf="@id/fabUserBirthday"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/user_birthday"
+                style="@style/TextViewUserInfoItemMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="01.01.1999"
-                style="@style/TextViewUserInfoItemMain"
-                app:layout_constraintStart_toEndOf="@id/fabUserBirthday"
+                android:maxLines="1"
+                tools:text="01.01.1999"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintStart_toEndOf="@id/fabUserBirthday" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -186,76 +193,106 @@
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabUserAddress"
+                style="@style/FabStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_home"
-                app:fabSize="mini"
-                style="@style/FabStyle"
                 android:backgroundTint="@color/white"
-
+                app:fabSize="mini"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_home" />
 
             <TextView
                 android:id="@+id/tvUserAddressHeader"
+                style="@style/TextViewUserInfoItemHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="Birthday"
-                style="@style/TextViewUserInfoItemHeader"
+                android:text="Address"
                 app:layout_constraintStart_toEndOf="@id/fabUserAddress"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/user_address"
+                style="@style/TextViewUserInfoItemMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="Moscow"
-                style="@style/TextViewUserInfoItemMain"
-                app:layout_constraintStart_toEndOf="@id/fabUserAddress"
+                android:maxLines="1"
+                tools:text="Moscow"
                 app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintStart_toEndOf="@id/fabUserAddress" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fabUserAboutMe"
+                style="@style/FabStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_info"
-                app:fabSize="mini"
-                style="@style/FabStyle"
                 android:backgroundTint="@color/white"
-
+                app:fabSize="mini"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_info" />
 
             <TextView
                 android:id="@+id/tvUserAboutMeHeader"
+                style="@style/TextViewUserInfoItemHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="About me"
-                style="@style/TextViewUserInfoItemHeader"
                 app:layout_constraintStart_toEndOf="@id/fabUserAboutMe"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/user_about_me"
+                style="@style/TextViewUserInfoItemMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="Love animals"
-                style="@style/TextViewUserInfoItemMain"
+                android:maxLines="5"
+                app:layout_constrainedWidth="true"
                 app:layout_constraintStart_toEndOf="@id/fabUserAboutMe"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvUserAboutMeHeader"
+                app:layout_constraintTop_toBottomOf="@id/tvUserAboutMeHeader"
+                tools:text="@tools:sample/lorem/random" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/progress_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/margin_100_dp"
+            android:layout_marginEnd="@dimen/margin_sixteen"
+            android:indeterminate="true"
+            android:indeterminateOnly="true"
+            android:indeterminateTint="#F1CDB3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/progressBar"
+            android:text="@string/please_wait" />
+
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
