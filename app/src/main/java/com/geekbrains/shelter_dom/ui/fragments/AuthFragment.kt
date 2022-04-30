@@ -1,16 +1,12 @@
 package com.geekbrains.shelter_dom.ui.fragments
 
 import android.app.Service
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
-import com.geekbrains.shelter_dom.MainActivity
 import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.api.PetsApiFactory
 import com.geekbrains.shelter_dom.data.model.auth.User
@@ -20,6 +16,10 @@ import com.geekbrains.shelter_dom.presentation.auth.AuthPresenter
 import com.geekbrains.shelter_dom.presentation.auth.AuthView
 import com.geekbrains.shelter_dom.ui.Screens
 import com.geekbrains.shelter_dom.utils.*
+import com.validator.easychecker.EasyChecker
+import com.validator.easychecker.exceptions.DeveloperErrorException
+import com.validator.easychecker.exceptions.InputErrorException
+import com.validator.easychecker.util.PasswordPattern
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -63,6 +63,36 @@ class AuthFragment : MvpAppCompatFragment(), AuthView {
         }
 
         binding.buttonLogin.onCLick { login() }
+        binding.buttonCreateAccount.onCLick { onCreateAccBtnClick() }
+    }
+
+    private fun onCreateAccBtnClick() {
+        try {
+            val isValidationSuccess = EasyChecker.validateInput(
+                requireContext(),
+                8,
+                PasswordPattern.PASSWORD_PATTERN_NONE,
+                binding.registerName,
+                binding.registerEmail,
+                binding.registerPassword,
+                binding.registerPassword2
+            )
+
+            if (isValidationSuccess) {
+                presenter.register(
+                    binding.registerName.text.toString(),
+                    binding.registerEmail.text.toString(),
+                    binding.registerPassword.text.toString(),
+                    binding.registerPassword2.text.toString()
+                )
+            } else {
+                showError("Not validated")
+            }
+        } catch (developerErrorException: DeveloperErrorException) {
+            developerErrorException.printStackTrace()
+        } catch (inputErrorException: InputErrorException) {
+            inputErrorException.message?.let { showError(it) }
+        }
     }
 
     private fun hideKeyboard() {
@@ -86,10 +116,15 @@ class AuthFragment : MvpAppCompatFragment(), AuthView {
 
     override fun showProgress() {
         setVisibility(binding.progressBarLayout, true)
-        setVisibility(binding.contentLayout, false)
     }
 
     override fun nextScreen(user: User) {
         App.INSTANCE.router.navigateTo(Screens.OpenMainActivity())
+    }
+
+    override fun successRegistration() {
+        setVisibility(binding.progressBarLayout, false)
+        setVisibility(binding.registerForm, false)
+        setVisibility(binding.loginForm, true)
     }
 }

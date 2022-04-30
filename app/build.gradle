@@ -38,6 +38,8 @@ android {
 }
 
 dependencies {
+    // Easy checker
+    implementation 'com.github.mkhan9047:Easy-Checker:1.0.2'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

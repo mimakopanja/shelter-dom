@@ -1,17 +1,14 @@
 package com.geekbrains.shelter_dom.data.api
 
 
-import com.geekbrains.shelter_dom.data.model.auth.AuthResponse
+import com.geekbrains.shelter_dom.data.model.auth.AuthAndRegisterResponse
 import com.geekbrains.shelter_dom.data.model.pet.BreedsData
 import com.geekbrains.shelter_dom.data.model.pet.Data
 import com.geekbrains.shelter_dom.data.model.pet.Pet
 import com.geekbrains.shelter_dom.data.model.pet.TypesData
 import com.geekbrains.shelter_dom.data.model.user.UserSingle
 import io.reactivex.rxjava3.core.Single
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface PetsApi {
 
@@ -45,5 +42,13 @@ interface PetsApi {
     fun authorization(
         @Query("email") login: String?,
         @Query("password") pass: CharSequence?
-    ): Single<AuthResponse>
+    ): Single<AuthAndRegisterResponse>
+
+    @POST("register")
+    fun registration(
+        @Query("name") name: String,
+        @Query("email") email: String,
+        @Query("password") password: String,
+        @Query("password_confirmation") passwordConfirm: String
+    ): Single<AuthAndRegisterResponse>
 }
