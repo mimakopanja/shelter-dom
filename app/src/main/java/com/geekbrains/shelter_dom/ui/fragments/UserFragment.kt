@@ -13,6 +13,7 @@ import com.geekbrains.shelter_dom.presentation.user.UserPresenter
 import com.geekbrains.shelter_dom.presentation.user.UserView
 import com.geekbrains.shelter_dom.ui.Screens
 import com.geekbrains.shelter_dom.utils.*
+import com.shashank.sony.fancytoastlib.FancyToast
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -79,7 +80,7 @@ class UserFragment : MvpAppCompatFragment(), UserView {
     }
 
     override fun showError(msg: String) {
-        binding.root.showSnackBar("UserError", "")
+        customToast(App.INSTANCE.applicationContext, "User Error!", FancyToast.ERROR)
     }
 
     override fun showProgress() {
@@ -111,14 +112,4 @@ class UserFragment : MvpAppCompatFragment(), UserView {
         }
         return super.onOptionsItemSelected(item)
     }
-
-/*    fun newInstance(user: User): UserFragment {
-        return UserFragment().apply {
-            arguments = Bundle().apply {
-                putParcelable(USER_SHARED_PREF_TAG, user)
-            }
-        }
-    }*/
-
-
 }

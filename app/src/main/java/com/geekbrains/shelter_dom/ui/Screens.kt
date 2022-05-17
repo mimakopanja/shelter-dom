@@ -91,4 +91,11 @@ object Screens {
             return UserFragment().newInstance(userBundle)
         }
     }
+
+    class OpenFavFragment(token: String) : FragmentScreen {
+        private val tokenBundle = token
+        override fun createFragment(factory: FragmentFactory): Fragment {
+            return FavoriteFragment.newInstance(tokenBundle)
+        }
+    }
 }

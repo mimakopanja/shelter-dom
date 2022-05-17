@@ -88,9 +88,25 @@
         <item name="android:background">@drawable/rounded_dialog</item>
     </style>
 
-    <style name="ButtonOutline" parent="Widget.Material3.Button.OutlinedButton">
+<!--    <style name="ButtonOutline" parent="Widget.Material3.Button.OutlinedButton">
         <item name="strokeColor">#F1CDB3</item>
         <item name="android:textColor">@color/text_color_day_night</item>
+    </style>-->
+
+    <style name="ButtonOutline" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">#F1CDB3</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+    </style>
+
+    <style name="ButtonBorder" parent="Widget.AppCompat.Button.Colored"/>
+
+    <style name="ButtonBorder.Accent">
+        <item name="strokeColor">#F1CDB3</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+        <item name="android:background">@drawable/btn_outline</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/text_12</item>
+        <item name="android:singleLine">true</item>
     </style>
 
     <style name="ButtonInactive" parent="Widget.MaterialComponents.Button">

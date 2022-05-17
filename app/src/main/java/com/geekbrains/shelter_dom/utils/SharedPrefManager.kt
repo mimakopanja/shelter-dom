@@ -28,6 +28,22 @@ class SharedPrefManager() {
 
     }
 
+    fun saveToken(token: String?) {
+        val sharedPreferences = App.INSTANCE.applicationContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString(SHARED_TOKEN, token)
+        editor.apply()
+    }
+
+    val token: String? get() {
+        val sharedPreferences = App.INSTANCE.applicationContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val token = sharedPreferences.getString(SHARED_TOKEN, "")
+        if (token.isNullOrEmpty()){
+            return ""
+        }
+        return token
+    }
+
     fun clear() {
         val sharedPreferences = App.INSTANCE.applicationContext.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()

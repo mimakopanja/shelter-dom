@@ -11,6 +11,7 @@ data class Data(
     val description: String? = "",
     val disease: @RawValue List<Disease>? = listOf(),
     val id: Int? = 0,
+    val favourite: Boolean? = null,
     val images: @RawValue List<Image>? = listOf(),
     val inoculation: @RawValue List<Inoculation>? = listOf(),
     val name: String? = "",

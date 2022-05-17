@@ -70,13 +70,13 @@ class ImageDialog: DialogFragment() {
         binding.dotsIndicator.setViewPager2(binding.viewPager)
 
 
-        val alphaColor = ColorUtils.setAlphaComponent(Color.parseColor(COLOR_TRANSPARENT), ALPHA)
+/*        val alphaColor = ColorUtils.setAlphaComponent(Color.parseColor(COLOR_TRANSPARENT), ALPHA)
         val colorAnimation = ValueAnimator.ofObject(ArgbEvaluator(), Color.TRANSPARENT, alphaColor)
         colorAnimation.duration = ANIMATION_DURATION
         colorAnimation.addUpdateListener { animator ->
             binding.imagePopupLayout.setBackgroundColor(animator.animatedValue as Int)
         }
-        colorAnimation.start()
+        colorAnimation.start()*/
 
 
         binding.relative.alpha = 0f

@@ -12,16 +12,18 @@ import com.geekbrains.shelter_dom.presentation.filter.types.ITypeListPresenter
 import com.geekbrains.shelter_dom.presentation.filter.types.TypeView
 import com.geekbrains.shelter_dom.presentation.list.IPetsListPresenter
 import com.geekbrains.shelter_dom.presentation.list.PetsView
-import com.geekbrains.shelter_dom.utils.App
-import com.geekbrains.shelter_dom.utils.ageStrings
+import com.geekbrains.shelter_dom.utils.*
 import com.geekbrains.shelter_dom.utils.exceptions.ApiExceptions
 import com.geekbrains.shelter_dom.utils.exceptions.ConnectionException
-import com.geekbrains.shelter_dom.utils.isConnected
 import com.github.terrakok.cicerone.Router
+import com.shashank.sony.fancytoastlib.FancyToast
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class PetsPresenter(
     private val filterRepo: PetsRepository,
@@ -47,11 +49,11 @@ class PetsPresenter(
 
     class PetsListPresenter : IPetsListPresenter {
 
-
         val pets = mutableListOf<Data>()
 
         override var itemClickListener: ((PetItemView) -> Unit)? = null
         override var onLongClickListener: ((PetItemView) -> Unit)? = null
+        override var favClickListener: ((PetItemView) -> Unit)? = null
 
         override fun bindView(view: PetItemView) {
             pets[view.pos].let { pet ->
@@ -62,13 +64,6 @@ class PetsPresenter(
         override fun getCount() = pets.size
 
         fun setPets(list: List<Data>) {
-            if (list.isNullOrEmpty()) {
-                Toast.makeText(
-                    App.INSTANCE.applicationContext,
-                    "No Results Found!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
             pets.clear()
             pets.addAll(list)
         }
@@ -82,6 +77,7 @@ class PetsPresenter(
 
         override var itemClickListener: ((BreedView) -> Unit)? = null
         override var onLongClickListener: ((BreedView) -> Unit)? = null
+        override var favClickListener: ((BreedView) -> Unit)? = null
 
 
         override fun bindView(view: BreedView) {
@@ -98,7 +94,7 @@ class PetsPresenter(
 
         override var itemClickListener: ((TypeView) -> Unit)? = null
         override var onLongClickListener: ((TypeView) -> Unit)? = null
-
+        override var favClickListener: ((TypeView) -> Unit)? = null
 
         override fun bindView(view: TypeView) {
             types[view.pos].let { type ->
@@ -114,7 +110,7 @@ class PetsPresenter(
 
         override var itemClickListener: ((AgeView) -> Unit)? = null
         override var onLongClickListener: ((AgeView) -> Unit)? = null
-
+        override var favClickListener: ((AgeView) -> Unit)? = null
 
         override fun bindView(view: AgeView) {
             ages[view.pos].let { ageString ->
@@ -165,11 +161,40 @@ class PetsPresenter(
             viewState.openSlider(pet)
         }
 
+        petListPresenter.favClickListener = { itemView ->
+            petListPresenter.currentItem = itemView.pos
+            val pet = petListPresenter.pets[itemView.pos]
+
+            if (pet.favourite == false) {
+                filterRepo.addToFavourites(
+                    "Bearer ${SharedPrefManager.getInstance().token}",
+                    pet.id,
+                    callback = object : Callback<Unit> {
+                        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                            petListPresenter.setPets(mutableListOf())
+                            petListPresenter.currentPage = 1
+                            startLoading()
+                        }
+
+                        override fun onFailure(call: Call<Unit>, t: Throwable) {
+                            viewState.showError("Error adding to favorites!")
+                        }
+
+                    })
+            } else {
+                customToast(
+                    App.INSTANCE.applicationContext,
+                    "Already in the favorites!",
+                    FancyToast.INFO
+                )
+            }
+        }
     }
 
     fun startLoading() {
         try {
             filterRepo.getPets(
+                "Bearer ${SharedPrefManager.getInstance().token}",
                 filterType,
                 filterBreed,
                 filterAgeState,
@@ -248,11 +273,6 @@ class PetsPresenter(
     override fun onDestroy() {
         super.onDestroy()
         disposables.dispose()
-    }
-
-    fun backPressed(): Boolean {
-        router.exit()
-        return true
     }
 
     fun nextPage() {

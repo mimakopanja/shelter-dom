@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="180dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/margin_8dp"
     android:theme="@style/WhitePage">
@@ -65,8 +65,10 @@
 
             <Button
                 android:id="@+id/learn_more_button"
-                android:layout_width="wrap_content"
-                style="@style/ButtonOutline"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/padding_20"
+                android:layout_marginEnd="@dimen/padding_20"
+                style="@style/ButtonBorder.Accent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_sixteen"
                 android:text="@string/learn_more"
@@ -74,6 +76,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_text_view" />
 
+            <ImageButton
+                android:id="@+id/favorite_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:layout_margin="@dimen/margin_8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_favorite_border"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,23 +1,23 @@
 package com.geekbrains.shelter_dom.utils
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.app.Service
 import android.content.Context
 import android.net.ConnectivityManager
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.geekbrains.shelter_dom.data.model.pet.AgeState
 import com.google.android.material.snackbar.Snackbar
+import com.shashank.sony.fancytoastlib.FancyToast
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.roundToInt
 
-val NETWORK_EXCEPTIONS = Arrays.asList<Class<*>>(
+val NETWORK_EXCEPTIONS = listOf<Class<*>>(
     UnknownHostException::class.java,
     SocketTimeoutException::class.java,
     ConnectException::class.java
@@ -73,3 +73,30 @@ fun isConnected(context: Context): Boolean {
 fun setVisibility(view: View, isShown: Boolean) {
     view.visibility = if (isShown) View.VISIBLE else View.GONE
 }
+
+fun customToast(context: Context, msg: String, style: Int ){
+    FancyToast.makeText(context, msg,FancyToast.LENGTH_SHORT, style,false).show()
+}
+
+
+@SuppressLint("SimpleDateFormat")
+fun calculateAge(date: String?): String {
+    val currentDate = Calendar.getInstance()
+    val myFormat = SimpleDateFormat("yyyy-MM-dd")
+    var birthdate: Date? = null
+
+    try {
+        birthdate = date?.let { myFormat.parse(it) }
+    } catch (e: ParseException) {
+        e.printStackTrace()
+    }
+
+    val time = currentDate.time.time / 1000 - birthdate!!.time / 1000
+
+    val years = time.toFloat().roundToInt() / 31536000
+    val months = (time - years * 31536000).toFloat().roundToInt() / 2628000
+    return if (years == 0){
+        months.toString().plus(" months")
+    } else years.toString()
+}
+

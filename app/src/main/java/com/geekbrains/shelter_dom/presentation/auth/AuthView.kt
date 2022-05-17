@@ -7,7 +7,9 @@ import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface AuthView: MvpView {
+    fun successRegistration()
     fun showProgress()
     fun showError(msg: String)
-    fun nextScreen(user: User)
+    fun nextScreen()
+    fun buttonLogin()
 }

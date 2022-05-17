@@ -15,10 +15,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.ColorUtils
 import com.geekbrains.shelter_dom.data.model.pet.Data
 import com.geekbrains.shelter_dom.databinding.CustomDialogFragmentBinding
-import com.geekbrains.shelter_dom.utils.ALPHA
-import com.geekbrains.shelter_dom.utils.ANIMATION_DURATION
-import com.geekbrains.shelter_dom.utils.COLOR_TRANSPARENT
-import com.geekbrains.shelter_dom.utils.PET_DETAIL_TAG
+import com.geekbrains.shelter_dom.utils.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Suppress("DEPRECATION")
 class DialogPopup: AppCompatActivity() {
@@ -72,10 +71,12 @@ class DialogPopup: AppCompatActivity() {
         }
     }
 
+
+
     private fun loadData(pet: Data) {
         binding.petNameTv.text = pet.name
         binding.petDescTv.text = pet.description
-        binding.petAgeTv.text = pet.birthday_at
+        binding.petAgeTv.text = calculateAge(pet.birthday_at)
         binding.petDiseasesTv.text = pet.disease?.first()?.name
         binding.petParasitesTv.text = pet.treatment_of_parasites.toString()
         binding.petBreedTv.text = pet.breed

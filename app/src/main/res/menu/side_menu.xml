@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/navigation_home"
@@ -14,6 +15,13 @@
         android:id="@+id/navigation_our_pets"
         android:title="@string/our_pets"
         android:checkable="true"/>
+
+
+    <item
+        android:id="@+id/navigation_fav"
+        android:title="Favorites"
+        android:checkable="true"/>
+
     <item
         android:id="@+id/navigation_help"
         android:title="@string/help_the_shelter"
@@ -22,5 +30,6 @@
         android:id="@+id/navigation_contacts"
         android:title="@string/contacts"
         android:checkable="true"/>
+
 
 </menu>

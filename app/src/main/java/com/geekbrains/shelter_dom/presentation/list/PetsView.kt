@@ -7,7 +7,7 @@ import moxy.viewstate.strategy.StateStrategyType
 import moxy.viewstate.strategy.alias.Skip
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface PetsView: MvpView{
+interface PetsView : MvpView {
     fun init()
     fun updateList()
     fun showProgress()

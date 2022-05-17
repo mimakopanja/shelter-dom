@@ -3,6 +3,8 @@ package com.geekbrains.shelter_dom.ui.fragments
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.*
@@ -156,6 +158,7 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
         binding.tryAgainButton?.visibility = View.GONE
         setVisibility(binding.connectionLayout, true)
     }
+
 
     override fun showError(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()

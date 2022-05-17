@@ -3,7 +3,7 @@
     android:id="@+id/image_popup_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/animals_fragment_bg"
+    android:backgroundTint="@color/white"
     android:orientation="vertical"
     app:cardElevation="0dp">
 

@@ -13,6 +13,7 @@ import com.geekbrains.shelter_dom.ui.Screens
 import com.geekbrains.shelter_dom.utils.*
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.google.android.material.navigation.NavigationView
+import com.shashank.sony.fancytoastlib.FancyToast
 
 
 class MainActivity : AppCompatActivity(), MainView,
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity(), MainView,
 
 
     private val userSharedPref = SharedPrefManager.getInstance().user
+    private lateinit var token: String
 
     private lateinit var binding: ActivityMainBinding
     private val navigator = AppNavigator(this, R.id.container)
@@ -39,6 +41,7 @@ class MainActivity : AppCompatActivity(), MainView,
         binding.navView.setNavigationItemSelectedListener(this)
 
 
+
 //        Logout User
         binding.logoutButton?.onCLick {
             SharedPrefManager.getInstance().clear()
@@ -46,7 +49,7 @@ class MainActivity : AppCompatActivity(), MainView,
             setVisibility(binding.logoutButton!!, false)
             binding.ivOpenUser?.let { it1 -> setVisibility(it1, false) }
             binding.drawerLayout.closeDrawers()
-            binding.root.showSnackBar("Logged out!", "")
+            customToast(applicationContext, "You've logged out successfully!", FancyToast.INFO)
         }
 
 
@@ -91,6 +94,7 @@ class MainActivity : AppCompatActivity(), MainView,
     }
 
     private fun initSharedPref() {
+        token = SharedPrefManager.getInstance().token.toString()
         if (userSharedPref.isLoggedIn == true) {
             binding.registerTextView?.let { setVisibility(it, false) }
             binding.ivOpenUser?.let { setVisibility(it, true) }
@@ -121,7 +125,7 @@ class MainActivity : AppCompatActivity(), MainView,
             R.id.navigation_our_pets -> App.INSTANCE.router.replaceScreen(Screens.OpenOurPetsFragment())
             R.id.navigation_help -> App.INSTANCE.router.replaceScreen(Screens.OpenHelpShelterFragment())
             R.id.navigation_contacts -> App.INSTANCE.router.replaceScreen(Screens.OpenContactsFragment())
-
+            R.id.navigation_fav -> App.INSTANCE.router.replaceScreen(Screens.OpenFavFragment(token))
         }
         binding.drawerLayout.closeDrawers()
         return true
