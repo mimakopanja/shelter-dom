@@ -68,5 +68,6 @@
     <string name="username">Email</string>
     <string name="password">Password</string>
     <string name="list_is_empty">Your favorites list is empty! :( </string>
+    <string name="login_successful">You\'ve logged out successfully!</string>
 
 </resources>

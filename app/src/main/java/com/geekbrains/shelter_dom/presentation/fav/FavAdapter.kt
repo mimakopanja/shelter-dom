@@ -2,22 +2,18 @@ package com.geekbrains.shelter_dom.presentation.fav
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.model.pet.Data
 import com.geekbrains.shelter_dom.databinding.ItemFavoriteBinding
-import com.geekbrains.shelter_dom.presentation.fav.view.FavItemView
-import com.geekbrains.shelter_dom.presentation.fav.view.IFavListPresenter
-import com.geekbrains.shelter_dom.presentation.pets.adapter.PetsAdapter
+import com.geekbrains.shelter_dom.presentation.list.IPetsListPresenter
+import com.geekbrains.shelter_dom.presentation.pets.PetItemView
 import com.geekbrains.shelter_dom.utils.*
-import com.shashank.sony.fancytoastlib.FancyToast
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 
 class FavAdapter(
-    private val presenter: IFavListPresenter
+    private val presenter: IPetsListPresenter
 ) : RecyclerView.Adapter<FavAdapter.FavViewHolder>() {
     private lateinit var binding: ItemFavoriteBinding
     private var lastPosition: Int = -1
@@ -30,21 +26,16 @@ class FavAdapter(
 
         val holder = FavAdapter.FavViewHolder(binding)
 
-
-        binding.deleteIcon.setOnClickListener {
-            presenter.itemClickListener?.invoke(holder)
-        }
-
         return holder
     }
 
     class FavViewHolder(
         private val viewBinding: ItemFavoriteBinding
-    ) : RecyclerView.ViewHolder(viewBinding.root), LayoutContainer, FavItemView {
+    ) : RecyclerView.ViewHolder(viewBinding.root), LayoutContainer, PetItemView {
 
         override val containerView = viewBinding.root
 
-        lateinit var petItem: Data
+        private lateinit var petItem: Data
 
         override fun loadPet(pet: Data) = with(viewBinding) {
             petItem = pet
@@ -70,17 +61,7 @@ class FavAdapter(
     override fun getItemCount() = presenter.getCount()
 
     override fun onBindViewHolder(holder: FavViewHolder, position: Int) {
-
         presenter.bindView(holder.apply { pos = position })
-
-        val animation: Animation = AnimationUtils.loadAnimation(
-            App.INSTANCE.applicationContext,
-            if (position > lastPosition) {
-                R.anim.scale_up
-            } else R.anim.scale_up
-        )
-
-        holder.itemView.startAnimation(animation)
         lastPosition = holder.bindingAdapterPosition
 
     }

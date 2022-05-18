@@ -107,7 +107,7 @@ class UserFragment : MvpAppCompatFragment(), UserView {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_user_update -> {
-                App.INSTANCE.router.navigateTo(Screens.OpenUserUpdateFragment())
+                App.INSTANCE.router.navigateTo(Screens.OpenUserUpdateFragment(userData.data?.profile))
             }
         }
         return super.onOptionsItemSelected(item)

@@ -11,6 +11,6 @@ interface FavPetsView : MvpView {
     fun noConnection()
     fun showError(message: String)
     fun hideProgress()
-    fun deleteFav(id: Int?, position: Int)
+    fun deleteFavorite(id: Int?, position: Int)
     fun showEmptyMessage()
 }

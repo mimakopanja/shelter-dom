@@ -2,16 +2,14 @@ package com.geekbrains.shelter_dom.presentation.fav
 
 import com.geekbrains.shelter_dom.data.model.pet.Data
 import com.geekbrains.shelter_dom.data.repo.pets.PetsRepository
-import com.geekbrains.shelter_dom.presentation.fav.view.FavItemView
-import com.geekbrains.shelter_dom.presentation.fav.view.IFavListPresenter
 import com.geekbrains.shelter_dom.presentation.list.FavPetsView
+import com.geekbrains.shelter_dom.presentation.list.IPetsListPresenter
+import com.geekbrains.shelter_dom.presentation.pets.PetItemView
 import com.geekbrains.shelter_dom.utils.App
 import com.geekbrains.shelter_dom.utils.SharedPrefManager
-import com.geekbrains.shelter_dom.utils.customToast
 import com.geekbrains.shelter_dom.utils.exceptions.ApiExceptions
 import com.geekbrains.shelter_dom.utils.isConnected
 import com.github.terrakok.cicerone.Router
-import com.shashank.sony.fancytoastlib.FancyToast
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -26,22 +24,27 @@ class FavPresenter(
     private val uiScheduler: Scheduler
 ) : MvpPresenter<FavPetsView>() {
 
-    val petListPresenter = PetsListPresenter()
+    val favListPresenter = FavListPresenter()
     private var disposables = CompositeDisposable()
 
-    class PetsListPresenter : IFavListPresenter {
+    class FavListPresenter : IPetsListPresenter {
 
         val pets = mutableListOf<Data>()
 
-        override var itemClickListener: ((FavItemView) -> Unit)? = null
-        override var favClickListener: ((FavItemView) -> Unit)? = null
-        override var onLongClickListener: ((FavItemView) -> Unit)? = null
+        override var itemClickListener: ((PetItemView) -> Unit)? = null
+        override var favClickListener: ((PetItemView) -> Unit)? = null
+        override var onLongClickListener: ((PetItemView) -> Unit)? = null
 
-        override fun bindView(view: FavItemView) {
+        fun getId(position: Int): Int? {
+            return pets[position].id
+        }
+
+        override fun bindView(view: PetItemView) {
             pets[view.pos].let { pet ->
                 view.loadPet(pet)
             }
         }
+
         override fun getCount() = pets.size
 
         fun setPets(list: List<Data>) {
@@ -60,13 +63,6 @@ class FavPresenter(
             startLoading()
         }
         viewState.init()
-
-
-        petListPresenter.itemClickListener = { itemView ->
-            petListPresenter.currentItem = itemView.pos
-            val pet = petListPresenter.pets[itemView.pos]
-            viewState.deleteFav(pet.id, petListPresenter.currentItem)
-        }
     }
 
     fun startLoading() {
@@ -80,11 +76,12 @@ class FavPresenter(
                 ?.doFinally { viewState.hideProgress() }
                 ?.subscribe(
                     {
-                        if (it.data.isNullOrEmpty()){
+                        if (it.data.isNullOrEmpty()) {
                             viewState.showEmptyMessage()
                         }
-                        petListPresenter.pets.clear()
-                        petListPresenter.pets.addAll(it.data!!)
+
+                        favListPresenter.pets.clear()
+                        favListPresenter.pets.addAll(it.data!!)
                         viewState.updateList()
                     }, {
                         viewState.showError("You Are Not Logged In!")
@@ -97,15 +94,16 @@ class FavPresenter(
         }
     }
 
-    fun remove(index: Int?) {
+    fun removeFavPet(index: Int?) {
         repo.deleteFromFavorites(
             "Bearer ${SharedPrefManager.getInstance().token}",
             index,
             callback = object : Callback<Unit> {
                 override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-                    petListPresenter.setPets(mutableListOf())
+                    favListPresenter.setPets(mutableListOf())
                     startLoading()
                 }
+
                 override fun onFailure(call: Call<Unit>, t: Throwable) {
                     viewState.showError("ERROR")
                 }

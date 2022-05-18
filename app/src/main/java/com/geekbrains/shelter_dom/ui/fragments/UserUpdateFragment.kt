@@ -7,12 +7,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.geekbrains.shelter_dom.R
+import com.geekbrains.shelter_dom.data.model.user.Data
+import com.geekbrains.shelter_dom.data.model.user.Profile
 import com.geekbrains.shelter_dom.databinding.FragmentUserUpdateBinding
+import com.geekbrains.shelter_dom.utils.IMG_BASE_URL_AVATAR
 
 class UserUpdateFragment : Fragment() {
 
     companion object {
-        fun newInstance() = UserUpdateFragment()
+        fun newInstance(user: Profile?): UserUpdateFragment {
+            return UserUpdateFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable("USER", user)
+                }
+            }
+        }
     }
 
     private lateinit var binding: FragmentUserUpdateBinding
@@ -29,8 +38,13 @@ class UserUpdateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val profile= arguments?.getParcelable("USER")  ?: Profile()
+
+        binding.profileName.setText(profile.name)
+        binding.profilePhone.setText(profile.phone)
+
         Glide.with(requireContext())
-            .load("https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80")
+            .load(IMG_BASE_URL_AVATAR.plus(profile.avatar))
             .placeholder(R.drawable.ic_account)
             .circleCrop()
             .into(binding.ivUserUpdate)

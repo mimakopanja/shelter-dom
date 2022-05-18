@@ -42,15 +42,6 @@
         app:layout_constraintStart_toEndOf="@id/favorite_image_view"
         app:layout_constraintTop_toTopOf="@id/background_view"/>
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/delete_icon"
-        android:backgroundTint="#00000000"
-        android:src="@drawable/ic_delete_white_24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/background_view"/>
-
     <LinearLayout
         android:id="@+id/linear_one"
         android:layout_width="wrap_content"

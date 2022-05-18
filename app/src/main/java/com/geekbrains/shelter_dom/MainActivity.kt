@@ -19,7 +19,6 @@ import com.shashank.sony.fancytoastlib.FancyToast
 class MainActivity : AppCompatActivity(), MainView,
     NavigationView.OnNavigationItemSelectedListener {
 
-
     private val userSharedPref = SharedPrefManager.getInstance().user
     private lateinit var token: String
 
@@ -40,8 +39,6 @@ class MainActivity : AppCompatActivity(), MainView,
         toggle.syncState()
         binding.navView.setNavigationItemSelectedListener(this)
 
-
-
 //        Logout User
         binding.logoutButton?.onCLick {
             SharedPrefManager.getInstance().clear()
@@ -49,9 +46,8 @@ class MainActivity : AppCompatActivity(), MainView,
             setVisibility(binding.logoutButton!!, false)
             binding.ivOpenUser?.let { it1 -> setVisibility(it1, false) }
             binding.drawerLayout.closeDrawers()
-            customToast(applicationContext, "You've logged out successfully!", FancyToast.INFO)
+            customToast(applicationContext, getString(R.string.login_successful), FancyToast.INFO)
         }
-
 
         binding.ivOpenUser?.onCLick {
             App.INSTANCE.router.replaceScreen(Screens.OpenUserInfoFragment(userSharedPref))

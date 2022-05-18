@@ -1,6 +1,5 @@
 package com.geekbrains.shelter_dom.ui
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import androidx.fragment.app.DialogFragment
@@ -9,6 +8,7 @@ import androidx.fragment.app.FragmentFactory
 import com.geekbrains.shelter_dom.MainActivity
 import com.geekbrains.shelter_dom.data.model.auth.User
 import com.geekbrains.shelter_dom.data.model.pet.Data
+import com.geekbrains.shelter_dom.data.model.user.Profile
 import com.geekbrains.shelter_dom.ui.dialogs.ImageDialog
 import com.geekbrains.shelter_dom.ui.fragments.*
 import com.geekbrains.shelter_dom.ui.fragments.OurPetsFragment
@@ -79,9 +79,10 @@ object Screens {
         }
     }
 
-    class OpenUserUpdateFragment : FragmentScreen {
+    class OpenUserUpdateFragment(user: Profile?) : FragmentScreen {
+        private val userInfo = user
         override fun createFragment(factory: FragmentFactory): Fragment {
-            return UserUpdateFragment.newInstance()
+            return UserUpdateFragment.newInstance(userInfo)
         }
     }
 

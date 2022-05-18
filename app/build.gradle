@@ -41,7 +41,6 @@ android {
 dependencies {
     // Easy checker
     implementation 'com.github.mkhan9047:Easy-Checker:1.0.2'
-
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
@@ -78,15 +77,12 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.1'
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
-
     //Lottie animation
     implementation 'com.airbnb.android:lottie:5.0.3'
     implementation 'io.github.amrdeveloper:lottiedialog:1.0.0'
-
     //Room
     implementation 'androidx.room:room-runtime:2.4.2'
     kapt 'androidx.room:room-compiler:2.4.2'
-
     implementation 'androidx.room:room-ktx:2.4.2'
     kapt "androidx.room:room-compiler:2.4.2"
 
@@ -95,17 +91,14 @@ dependencies {
 
     implementation 'com.github.bumptech.glide:glide:4.13.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.1'
-
 //    Swipe to refresh
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 //  PageViewer Indicator
     implementation 'com.tbuonomo:dotsindicator:4.2'
-
 //    Custom Toast
     implementation 'io.github.shashank02051997:FancyToast:2.0.1'
     implementation 'com.github.StevenDXC:DxLoadingButton:2.4'
     implementation 'com.redmadrobot.itemsadapter:itemsadapter-viewbinding:1.1'
 
-    implementation 'com.ernestoyaquello.dragdropswiperecyclerview:drag-drop-swipe-recyclerview:1.1.1'
-
+    implementation 'com.github.xabaras:RecyclerViewSwipeDecorator:1.4'
 }

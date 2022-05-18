@@ -5,7 +5,7 @@ import com.geekbrains.shelter_dom.R
 
 const val BASE_URL = "https://shelter.tpyii.com/api/"
 const val IMG_BASE_URL = "https://shelter.tpyii.com/"
-const val IMG_BASE_URL_AVATAR = "https://shelter.tpyii.com/storage"
+const val IMG_BASE_URL_AVATAR = "https://shelter.tpyii.com/storage/"
 const val PET_DETAIL_TAG = "PET_DETAIL_TAG"
 const val PET_IMAGE_TAG = "PET_IMAGE_TAG"
 const val SPLASH_DISPLAY_LENGTH :Long = 2000

@@ -79,15 +79,6 @@ class PetsAdapter(
     override fun onBindViewHolder(holder: PetsViewHolder, position: Int) {
 
         presenter.bindView(holder.apply { pos = position })
-
-        val animation: Animation = AnimationUtils.loadAnimation(
-            App.INSTANCE.applicationContext,
-            if (position > lastPosition) {
-                R.anim.scale_up
-            } else R.anim.scale_up
-        )
-
-        holder.itemView.startAnimation(animation)
         lastPosition = holder.bindingAdapterPosition
     }
 }
