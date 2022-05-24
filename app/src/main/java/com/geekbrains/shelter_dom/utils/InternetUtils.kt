@@ -1,60 +1,105 @@
-@file:Suppress("DEPRECATION")
-
 package com.geekbrains.shelter_dom.utils
 
-import android.app.Application
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
+import android.net.Network
+import android.net.NetworkCapabilities
+import android.net.NetworkRequest
 import androidx.lifecycle.LiveData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.net.InetSocketAddress
+import java.net.Socket
 
-object InternetUtils: LiveData<Boolean>() {
+class InternetUtils(private val context: Context) : LiveData<NetworkStatus>() {
 
-    private var broadcastReceiver: BroadcastReceiver? = null
-    private lateinit var application: Application
+    var connectivityManager: ConnectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val validConnections: MutableSet<Network> = HashSet()
 
-    fun init(application: Application) {
-        this.application = application
+    private lateinit var connectivityManagerCallback: ConnectivityManager.NetworkCallback
+
+    fun announceStatus() {
+        if (validConnections.isNotEmpty()) {
+            postValue(NetworkStatus.Available)
+        } else postValue(NetworkStatus.Unavailable)
     }
 
-    fun isInternetOn(): Boolean {
-        val cm = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork = cm.activeNetworkInfo
-        return activeNetwork != null && activeNetwork.isConnectedOrConnecting
-    }
-
-    override fun onActive() {
-        registerBroadCastReceiver()
-    }
-
-    override fun onInactive() {
-        unRegisterBroadCastReceiver()
-    }
-
-    private fun registerBroadCastReceiver() {
-        if (broadcastReceiver == null) {
-            val filter = IntentFilter()
-            filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION)
-
-            broadcastReceiver = object : BroadcastReceiver() {
-                override fun onReceive(_context: Context, intent: Intent) {
-                    val extras = intent.extras
-                    val info = extras?.getParcelable<NetworkInfo>("networkInfo")
-                    value = info?.state == NetworkInfo.State.CONNECTED
+    private fun getCallbackManager() =
+        object : ConnectivityManager.NetworkCallback() {
+            override fun onAvailable(network: Network) {
+                super.onAvailable(network)
+                val networkCapability = connectivityManager.getNetworkCapabilities(network)
+                val hasNetConn =
+                    networkCapability?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                        ?: false
+                if (hasNetConn) {
+                    validConnections.add(network)
+                    announceStatus()
                 }
             }
 
-            application.registerReceiver(broadcastReceiver, filter)
+            override fun onLost(network: Network) {
+                super.onLost(network)
+                validConnections.remove(network)
+                announceStatus()
+            }
+
+            override fun onCapabilitiesChanged(
+                network: Network,
+                networkCapabilities: NetworkCapabilities
+            ) {
+                super.onCapabilitiesChanged(network, networkCapabilities)
+                if (networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)) {
+                    determineInternetAccess(network)
+                } else {
+                    validConnections.remove(network)
+                }
+                announceStatus()
+            }
+        }
+
+    private fun determineInternetAccess(network: Network) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (InternetAvailability.check()) {
+                withContext(Dispatchers.Main) {
+                    validConnections.add(network)
+                    announceStatus()
+                }
+            }
         }
     }
 
-    private fun unRegisterBroadCastReceiver() {
-        if (broadcastReceiver != null) {
-            application.unregisterReceiver(broadcastReceiver)
-            broadcastReceiver = null
+    override fun onActive() {
+        super.onActive()
+        connectivityManagerCallback = getCallbackManager()
+        val networkRequest = NetworkRequest
+            .Builder()
+            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+            .build()
+        connectivityManager.registerNetworkCallback(networkRequest, connectivityManagerCallback)
+    }
+
+    override fun onInactive() {
+        super.onInactive()
+        connectivityManager.unregisterNetworkCallback(connectivityManagerCallback)
+    }
+}
+
+object InternetAvailability {
+
+    fun check(): Boolean {
+        return try {
+            val socket = Socket()
+            socket.connect(InetSocketAddress("8.8.8.8", 53))
+            socket.close()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
         }
     }
+
 }

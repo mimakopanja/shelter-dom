@@ -84,7 +84,7 @@ class FavoriteFragment : MvpAppCompatFragment(), FavPetsView {
     }
 
     override fun noConnection() {
-        customToast(requireContext(), "No Connection", FancyToast.ERROR)
+        noConnectionDialog(requireActivity())
     }
 
     override fun showError(message: String) {

@@ -19,4 +19,3 @@ const val SHARED_TOKEN = "SHARED_TOKEN"
 const val SHARED_ID = "SHARED_ID"
 const val USER_SHARED_PREF_TAG = "USER_SHARED_PREF"
 
-

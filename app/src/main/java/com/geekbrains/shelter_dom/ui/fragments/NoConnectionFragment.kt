@@ -4,32 +4,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.geekbrains.shelter_dom.utils.App
-import com.geekbrains.shelter_dom.databinding.FragmentMainBinding
-import com.geekbrains.shelter_dom.ui.Screens
+import com.geekbrains.shelter_dom.R
+import com.geekbrains.shelter_dom.databinding.FragmentNoConnectionBinding
 
-class MainFragment : Fragment() {
+
+class NoConnectionFragment: Fragment() {
 
     companion object{
-        fun newInstance() = MainFragment()
+        fun newInstance() = NoConnectionFragment()
     }
 
-    private lateinit var binding: FragmentMainBinding
+    private lateinit var binding: FragmentNoConnectionBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMainBinding.inflate(inflater, container, false)
+        binding = FragmentNoConnectionBinding.inflate(inflater, container, false)
+        binding.animationViewIcon.setAnimation(R.raw.cat)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.makeFriendBtn.setOnClickListener {
-            App.INSTANCE.router.replaceScreen(Screens.OpenOurPetsFragment())
-        }
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
     }
 }

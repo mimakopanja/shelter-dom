@@ -99,4 +99,10 @@ object Screens {
             return FavoriteFragment.newInstance(tokenBundle)
         }
     }
+
+    class OpenNoConnectionFragment : FragmentScreen {
+        override fun createFragment(factory: FragmentFactory): Fragment {
+            return NoConnectionFragment.newInstance()
+        }
+    }
 }

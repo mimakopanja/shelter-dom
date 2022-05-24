@@ -1,14 +1,21 @@
 package com.geekbrains.shelter_dom.utils
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
+import android.provider.Settings
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
+import com.geekbrains.shelter_dom.MainActivity
+import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.model.pet.AgeState
 import com.google.android.material.snackbar.Snackbar
 import com.shashank.sony.fancytoastlib.FancyToast
+import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -16,13 +23,6 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
-
-val NETWORK_EXCEPTIONS = listOf<Class<*>>(
-    UnknownHostException::class.java,
-    SocketTimeoutException::class.java,
-    ConnectException::class.java
-)
-
 
 fun formatTime(time: Long): String {
     val date = Date(time * 1000L)
@@ -41,9 +41,9 @@ fun ageStrings() =
 
 fun View.onCLick(action: () -> Unit) {
     this.setOnClickListener {
-            action()
-        }
+        action()
     }
+}
 
 fun View.showSnackBar(
     text: String,
@@ -74,10 +74,9 @@ fun setVisibility(view: View, isShown: Boolean) {
     view.visibility = if (isShown) View.VISIBLE else View.GONE
 }
 
-fun customToast(context: Context, msg: String, style: Int ){
-    FancyToast.makeText(context, msg,FancyToast.LENGTH_SHORT, style,false).show()
+fun customToast(context: Context, msg: String, style: Int) {
+    FancyToast.makeText(context, msg, FancyToast.LENGTH_SHORT, style, false).show()
 }
-
 
 @SuppressLint("SimpleDateFormat")
 fun calculateAge(date: String?): String {
@@ -95,8 +94,29 @@ fun calculateAge(date: String?): String {
 
     val years = time.toFloat().roundToInt() / 31536000
     val months = (time - years * 31536000).toFloat().roundToInt() / 2628000
-    return if (years == 0){
+    return if (years == 0) {
         months.toString().plus(" months")
     } else years.toString()
 }
 
+fun noConnectionDialog(activity: Activity){
+    val mBottomSheetDialog = BottomSheetMaterialDialog.Builder(activity)
+        .setTitle("Connection Problem")
+        .setMessage("Checking the network cables, modem or router.\\n• Reconnecting to WI-FI")
+        .setCancelable(false)
+        .setPositiveButton(
+            "Refresh", com.shashank.sony.fancytoastlib.R.drawable.ic_refresh_black_24dp
+        ) { dialogInterface, which ->
+            startActivity(App.INSTANCE.applicationContext, Intent(Settings.ACTION_WIFI_SETTINGS), null)
+            dialogInterface.dismiss()
+        }
+        .setNegativeButton(
+            "Cancel", com.google.android.material.R.drawable.mtrl_ic_cancel
+        ) { dialogInterface, which ->
+            Toast.makeText(App.INSTANCE.applicationContext, "Cancelled!", Toast.LENGTH_SHORT)
+                .show()
+            dialogInterface.dismiss()
+        }
+        .build()
+    mBottomSheetDialog.show()
+}

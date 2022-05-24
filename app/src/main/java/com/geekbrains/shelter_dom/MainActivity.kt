@@ -3,9 +3,12 @@ package com.geekbrains.shelter_dom
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import com.geekbrains.shelter_dom.databinding.ActivityMainBinding
 import com.geekbrains.shelter_dom.ui.MainView
@@ -14,6 +17,7 @@ import com.geekbrains.shelter_dom.utils.*
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.google.android.material.navigation.NavigationView
 import com.shashank.sony.fancytoastlib.FancyToast
+import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog
 
 
 class MainActivity : AppCompatActivity(), MainView,
@@ -29,6 +33,37 @@ class MainActivity : AppCompatActivity(), MainView,
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        InternetUtils(this@MainActivity).observe(this) {
+            when (it) {
+                NetworkStatus.Unavailable -> {
+                    val mBottomSheetDialog = BottomSheetMaterialDialog.Builder(this)
+                        .setTitle("Connection Problem")
+                        .setMessage("Please check your connection!")
+                        .setCancelable(false)
+                        .setPositiveButton(
+                            "Refresh", com.shashank.sony.fancytoastlib.R.drawable.ic_refresh_black_24dp
+                        ) { dialogInterface, which ->
+                            ContextCompat.startActivity(
+                                App.INSTANCE.applicationContext,
+                                Intent(Settings.ACTION_WIFI_SETTINGS),
+                                null
+                            )
+                            dialogInterface.dismiss()
+                        }
+                        .setNegativeButton(
+                            "Cancel", com.google.android.material.R.drawable.mtrl_ic_cancel
+                        ) { dialogInterface, which ->
+                            Toast.makeText(App.INSTANCE.applicationContext, "Cancelled!", Toast.LENGTH_SHORT)
+                                .show()
+                            dialogInterface.dismiss()
+                        }
+                        .build()
+                    mBottomSheetDialog.show()
+                }
+            }
+        }
 
         val toggle = initActionBar()
         initSharedPref()
@@ -95,9 +130,13 @@ class MainActivity : AppCompatActivity(), MainView,
             binding.registerTextView?.let { setVisibility(it, false) }
             binding.ivOpenUser?.let { setVisibility(it, true) }
             binding.logoutButton?.let { setVisibility(it, true) }
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            refreshApp()
         }
+    }
+
+    private fun refreshApp() {
+        val intent = Intent(applicationContext, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
     }
 
     override fun onResume() {

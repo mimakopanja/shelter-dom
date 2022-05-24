@@ -1,16 +1,17 @@
 package com.geekbrains.shelter_dom.ui.fragments
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.provider.Settings
 import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.geekbrains.shelter_dom.MainActivity
 import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.api.PetsApiFactory
 import com.geekbrains.shelter_dom.data.model.pet.Data
@@ -25,9 +26,11 @@ import com.geekbrains.shelter_dom.presentation.pets.PetsPresenter
 import com.geekbrains.shelter_dom.presentation.pets.adapter.PetsAdapter
 import com.geekbrains.shelter_dom.ui.Screens
 import com.geekbrains.shelter_dom.utils.App
+import com.geekbrains.shelter_dom.utils.noConnectionDialog
 import com.geekbrains.shelter_dom.utils.setVisibility
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -71,7 +74,6 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOurPetsBinding.inflate(inflater, container, false)
-        binding.animationViewIcon.setAnimation(R.raw.cat)
         return binding.root
     }
 
@@ -147,20 +149,20 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
     }
 
     override fun noConnection() {
-        setVisibility(binding.connectionLayout, false)
-
+//        App.INSTANCE.router.replaceScreen(Screens.OpenNoConnectionFragment())
+        noConnectionDialog(requireActivity())
     }
 
     override fun noResult() {
-        binding.animationViewIcon.setAnimation(R.raw.nothing_found)
+      /*  binding.animationViewIcon?.setAnimation(R.raw.nothing_found)
         binding.tryAgainTitle?.text = ""
         binding.tryAgainSubtitle?.text = "No Result Found"
         binding.tryAgainButton?.visibility = View.GONE
-        setVisibility(binding.connectionLayout, true)
+        setVisibility(binding.connectionLayout, true)*/
     }
 
 
-    override fun showError(message: String) {
+    override fun showError(message: String?) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 

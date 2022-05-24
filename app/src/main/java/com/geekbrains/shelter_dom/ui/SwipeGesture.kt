@@ -17,6 +17,14 @@ abstract class SwipeGesture: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.L
         return false
     }
 
+    override fun getSwipeThreshold(viewHolder: RecyclerView.ViewHolder): Float {
+        return 0.1f
+    }
+
+    override fun getSwipeVelocityThreshold(defaultValue: Float): Float {
+        return 1f
+    }
+
     override fun onChildDraw(
         c: Canvas,
         recyclerView: RecyclerView,

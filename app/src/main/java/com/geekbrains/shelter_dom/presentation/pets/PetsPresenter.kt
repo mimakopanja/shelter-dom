@@ -1,7 +1,6 @@
 package com.geekbrains.shelter_dom.presentation.pets
 
 
-import android.widget.Toast
 import com.geekbrains.shelter_dom.data.model.pet.*
 import com.geekbrains.shelter_dom.data.repo.pets.PetsRepository
 import com.geekbrains.shelter_dom.presentation.filter.age.AgeView
@@ -13,10 +12,8 @@ import com.geekbrains.shelter_dom.presentation.filter.types.TypeView
 import com.geekbrains.shelter_dom.presentation.list.IPetsListPresenter
 import com.geekbrains.shelter_dom.presentation.list.PetsView
 import com.geekbrains.shelter_dom.utils.*
-import com.geekbrains.shelter_dom.utils.exceptions.ApiExceptions
 import com.geekbrains.shelter_dom.utils.exceptions.ConnectionException
 import com.github.terrakok.cicerone.Router
-import com.shashank.sony.fancytoastlib.FancyToast
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -30,8 +27,6 @@ class PetsPresenter(
     private val router: Router,
     private val uiScheduler: Scheduler
 ) : MvpPresenter<PetsView>() {
-
-
     val petListPresenter = PetsListPresenter()
     val typeListPresenter = TypeListPresenter()
     val breedListPresenter = BreedListPresenter()
@@ -124,14 +119,10 @@ class PetsPresenter(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        if (!isConnected(App.INSTANCE.applicationContext)) {
-            viewState.noConnection()
-        } else {
-            startLoading()
-            startTypesLoading()
-            startBreedsLoading()
-            startAgeLoading()
-        }
+        startLoading()
+        startTypesLoading()
+        startBreedsLoading()
+        startAgeLoading()
         viewState.init()
 
         typeListPresenter.itemClickListener = { itemView ->
@@ -182,11 +173,20 @@ class PetsPresenter(
 
                     })
             } else {
-                customToast(
-                    App.INSTANCE.applicationContext,
-                    "Already in the favorites!",
-                    FancyToast.INFO
-                )
+                filterRepo.deleteFromFavorites(
+                    "Bearer ${SharedPrefManager.getInstance().token}",
+                    pet.id,
+                    callback = object : Callback<Unit> {
+                        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                            petListPresenter.setPets(mutableListOf())
+                            petListPresenter.currentPage = 1
+                            startLoading()
+                        }
+
+                        override fun onFailure(call: Call<Unit>, t: Throwable) {
+                            viewState.showError("ERROR")
+                        }
+                    })
             }
         }
     }
@@ -212,13 +212,13 @@ class PetsPresenter(
                         meta.addAll(listOf(it.meta))
                         viewState.updateList()
                     }, {
-                        viewState.noConnection()
-                        viewState.showError(it.toString())
+//                        viewState.noConnection()
+//                        viewState.showError(it.toString())
                     }
                 )?.let {
                     disposables.add(it)
                 }
-        } catch (e: ApiExceptions) {
+        } catch (e: Exception) {
             viewState.showError(e.message)
         }
     }

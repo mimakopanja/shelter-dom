@@ -10,12 +10,6 @@ import java.util.*
 
 class App : Application() {
 
-    val NETWORK_EXCEPTIONS = Arrays.asList<Class<*>>(
-        UnknownHostException::class.java,
-        SocketTimeoutException::class.java,
-        ConnectException::class.java
-    )
-
     private val cicerone: Cicerone<Router> by lazy {
         Cicerone.create()
     }
@@ -26,7 +20,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         INSTANCE = this
-        InternetUtils.init(this)
+//        InternetUtils.init(INSTANCE)
     }
 
     companion object{

@@ -11,17 +11,17 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="4dp"
         android:backgroundTint="#00000000"
         app:cardElevation="0dp"
-        android:layout_marginStart="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/section_one"
             android:layout_width="match_parent"
-            android:layout_marginBottom="@dimen/margin_sixteen"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_sixteen"
             android:orientation="vertical">
 
             <LinearLayout
@@ -65,12 +65,12 @@
 
             <Button
                 android:id="@+id/learn_more_button"
-                android:layout_width="match_parent"
-                android:layout_marginStart="@dimen/padding_20"
-                android:layout_marginEnd="@dimen/padding_20"
                 style="@style/ButtonBorder.Accent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_20"
                 android:layout_marginTop="@dimen/margin_sixteen"
+                android:layout_marginEnd="@dimen/padding_20"
                 android:text="@string/learn_more"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -80,11 +80,11 @@
                 android:id="@+id/favorite_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
                 android:layout_margin="@dimen/margin_8dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_favorite_border"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/ic_favorite_border"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
