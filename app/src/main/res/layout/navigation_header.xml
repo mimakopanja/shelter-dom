@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="176dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="top"
+    android:backgroundTint="#00000000"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_sixteen">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/navigation_logo"
+        android:text="@string/cozy_house"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ToolbarTitle"
+        android:paddingTop="30dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:text="@string/shelter_for_pets_in_boston"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/text_ten_sp"
+        android:textColor="@color/white"
+        style="@style/TextAppearance.AppCompat.Button"
+        android:layout_marginStart="@dimen/margin_sixteen"/>
+
+</LinearLayout>

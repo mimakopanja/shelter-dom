@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_sixteen">16dp</dimen>
+    <dimen name="text_ten_sp">10sp</dimen>
+    <dimen name="padding_20">20dp</dimen>
+    <dimen name="margin_42">42dp</dimen>
+    <dimen name="image_300_dp">300dp</dimen>
+    <dimen name="margin_50_dp">50dp</dimen>
+    <dimen name="margin_100_dp">100dp</dimen>
+    <dimen name="margin_fragment_animals_title">30dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="card_view_corner_radius">25dp</dimen>
+    <dimen name="card_margin_42">42dp</dimen>
+    <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="filter_button_padding">10dp</dimen>
+    <dimen name="image_150dp">150dp</dimen>
+    <dimen name="margin_big">24dp</dimen>
+    <dimen name="corner_radius_input_text">30dp</dimen>
+    <dimen name="user_info_item_margin">18dp</dimen>
+    <dimen name="text_12">12sp</dimen>
+    <dimen name="text_25sp">25sp</dimen>
+    <dimen name="text_20sp">20sp</dimen>
+</resources>

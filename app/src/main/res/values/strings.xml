@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">Shelter-Dom</string>
+    <string name="make_a_friend">Make a friend</string>
+    <string name="main_context">We offer to give a chance to a little and nice puppy with an extremely wide and open heart. He or she will love you more than anybody else in the world, you will see!</string>
+    <string name="not_only_people_need_a_house">Not only people need a house</string>
+    <string name="cozy_house">Cozy House</string>
+    <string name="shelter_for_pets_in_boston">Shelter for pets in Boston</string>
+    <string name="about_the_shelter">About the shelter</string>
+    <string name="help_the_shelter">Help the shelter</string>
+    <string name="animals_fragment_title">Our friends who are looking for a house</string>
+    <string name="contacts">Contacts</string>
+    <string name="developed_by">Developed by...</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="op">Open</string>
+    <string name="about_title">About the shelter “Cozy House”</string>
+    <string name="about_description" formatted="false">Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.\n\nWe feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.</string>
+    <string name="home">Home</string>
+    <string name="our_pets">Our pets</string>
+    <string name="how_you_can_help_our_shelter">How you can help our shelter</string>
+    <string name="pet_food">Pet food</string>
+    <string name="transportation">Transportation</string>
+    <string name="toys">Toys</string>
+    <string name="shampoos">Shampoos</string>
+    <string name="medicines">Medicines</string>
+    <string name="sleeping_area">Sleeping area</string>
+    <string name="bowls">Bowls and cups</string>
+    <string name="vitamins">Vitamins</string>
+    <string name="collars_leashes">Collars / leashes</string>
+    <string name="get_to_know_the_rest">Get to know the rest</string>
+    <string name="age">Age:</string>
+    <string name="inoculations">Inoculations:</string>
+    <string name="diseases">Diseases:</string>
+    <string name="parasites">Parasites:</string>
+    <string name="none">none</string>
+    <string name="line">-</string>
+    <string name="for_questions_and_suggestions">For questions and suggestions</string>
+    <string name="email">email@shelter.com</string>
+    <string name="phone_number">+13 674 567 75 54</string>
+    <string name="visit_text">We are waiting for your visit</string>
+    <string name="address_1">1 Central Street, Boston (entrance from the store)</string>
+    <string name="address_2">18 South Park, London</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+
+<!--  FilterDialog  -->
+    <string name="type">Type</string>
+    <string name="breed">Breed</string>
+    <string name="filter_by">FILTER BY</string>
+    <string name="reset">Reset</string>
+    <string name="ready">Ready</string>
+
+    <string name="learn_more">Learn More</string>
+    <string name="please_wait">Please wait…</string>
+    <string name="try_again">Try Again</string>
+    <string name="connection_subtitle">Try:\n• Checking the network cables, modem or router.\n• Reconnecting to WI-FI</string>
+    <string name="no_connection">No Internet</string>
+    <string name="login">LOGIN</string>
+    <string name="register">register / login</string>
+    <string name="slash">/</string>
+    <string name="let_s_get_started">Let\'s get started</string>
+    <string name="create_an_account">Create An Account</string>
+    <string name="name">Name</string>
+    <string name="email_hint">Email</string>
+    <string name="create_account">Create account</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="logout">Logout</string>
+    <string name="username">Email</string>
+    <string name="password">Password</string>
+    <string name="list_is_empty">Your favorites list is empty! :( </string>
+    <string name="login_successful">You\'ve logged out successfully!</string>
+
+</resources>

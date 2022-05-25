@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="175dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <View
+        android:id="@+id/background_view"
+        android:background="@color/animals_fragment_bg"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/image_150dp"
+        android:layout_margin="@dimen/margin_8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/favorite_image_view"
+        app:layout_editor_absoluteX="46dp"
+        app:layout_editor_absoluteY="40dp"
+        tools:src="@tools:sample/avatars"
+        android:scaleType="centerCrop"
+        android:layout_width="@dimen/margin_100_dp"
+        android:layout_height="@dimen/image_150dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:layout_marginBottom="@dimen/margin_8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/background_view"/>
+
+    <TextView
+        android:id="@+id/favorite_pet_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@tools:sample/first_names"
+        android:layout_marginStart="@dimen/margin_8dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        style="@style/H4"
+        app:layout_constraintStart_toEndOf="@id/favorite_image_view"
+        app:layout_constraintTop_toTopOf="@id/background_view"/>
+
+    <LinearLayout
+        android:id="@+id/linear_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintStart_toEndOf="@id/favorite_image_view"
+        app:layout_constraintTop_toBottomOf="@id/favorite_pet_name"
+        android:layout_marginStart="@dimen/margin_8dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/favorite_pet_type"
+            style="@style/H4"
+            android:textSize="@dimen/text_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/margin_5dp"
+            android:textAlignment="textEnd"
+            tools:text="Dog" />
+
+        <TextView
+            style="@style/H4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/line"
+            android:layout_marginEnd="@dimen/margin_5dp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/favorite_pet_breed"
+            style="@style/H4"
+            android:textSize="@dimen/text_12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="Labrador" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/linear_one"
+        app:layout_constraintStart_toEndOf="@id/favorite_image_view"
+        android:paddingBottom="@dimen/margin_8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/H3"
+                android:textSize="@dimen/text_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                android:text="@string/age"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_dot" />
+
+            <TextView
+                android:id="@+id/favorite_pet_age"
+                style="@style/H3"
+                android:textSize="@dimen/text_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                tools:text="@tools:sample/date/ddmmyy" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/H3"
+                android:textSize="@dimen/text_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                android:text="@string/inoculations"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_dot" />
+
+            <TextView
+                android:id="@+id/favorite_pet_inoculations"
+                style="@style/H3"
+                android:textSize="@dimen/text_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                tools:text="@string/none" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/H3"
+                android:textSize="@dimen/text_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                android:text="@string/diseases"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_dot" />
+
+            <TextView
+                android:id="@+id/favorite_pet_diseases"
+                style="@style/H3"
+                android:textSize="@dimen/text_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                tools:text="@string/none" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/H3"
+                android:textSize="@dimen/text_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_8dp"
+                android:text="@string/parasites"
+                android:textStyle="bold"
+                app:drawableStartCompat="@drawable/ic_dot" />
+
+            <TextView
+                android:id="@+id/favorite_pet_parasites"
+                style="@style/H3"
+                android:textSize="@dimen/text_12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                tools:text="@string/none" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

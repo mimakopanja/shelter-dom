@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="WhitePage" parent="Theme.ShelterDom">
+        <item name="android:background">@color/background_day_night</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+        <item name="textInputStyle">@style/InputBox</item>
+    </style>
+
+    <style name="GreyPage" parent="Theme.ShelterDom">
+        <item name="android:background">@color/animals_fragment_bg</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+        <item name="textInputStyle">@style/InputBox</item>
+    </style>
+
+    <style name="CustomDialogTheme" parent="android:Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="LogoTextView">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="SideMenu">
+        <item name="itemTextColor">#F1CDB3</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="Widget.Material3.Toolbar">
+        <item name="titleTextColor">@color/primary</item>
+        <item name="titleTextAppearance">@style/ToolbarTitle</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.AppCompat.Caption</item>
+    </style>
+
+    <style name="ToolbarTitle">
+        <item name="fontFamily">@font/martel</item>
+        <item name="android:textColor">#F1CDB3</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="H2">
+        <item name="fontFamily">@font/butler</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="H4" parent="@style/TextAppearance.Material3.BodySmall">>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+    </style>
+
+    <style name="H3" parent="@style/TextAppearance.Material3.BodySmall">>
+        <item name="android:textSize">17sp</item>
+        <item name="fontFamily">@font/georgia</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+    </style>
+
+    <style name="DescriptionText" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textAllCaps">true</item>
+        <item name="fontFamily">@font/nanum</item>
+        <item name="android:textSize">@dimen/text_12</item>
+    </style>
+
+    <style name="ImageLabel" parent="Widget.AppCompat.ImageButton">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textAppearance">@style/H4</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="FabStyle" parent="Widget.Design.FloatingActionButton">
+        <item name="shapeAppearanceOverlay">@style/FabShapeStyle</item>
+        <item name="tint">@color/primary_dark</item>
+        <item name="borderWidth">0dp</item>
+        <item name="elevation">4dp</item>
+    </style>
+
+    <style name="FabShapeStyle" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/rounded_dialog</item>
+    </style>
+
+<!--    <style name="ButtonOutline" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="strokeColor">#F1CDB3</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+    </style>-->
+
+    <style name="ButtonOutline" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">#F1CDB3</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+    </style>
+
+    <style name="ButtonBorder" parent="Widget.AppCompat.Button.Colored"/>
+
+    <style name="ButtonBorder.Accent">
+        <item name="strokeColor">#F1CDB3</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+        <item name="android:background">@drawable/btn_outline</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/text_12</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="ButtonInactive" parent="Widget.MaterialComponents.Button">
+        <item name="strokeColor">#F1CDB3</item>
+        <item name="android:colorAccent">@color/green</item>
+        <item name="android:textColor">@color/text_color_day_night</item>
+    </style>
+
+    <style name="TextViewUserInfoItemHeader" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">"@color/gray"</item>
+    </style>
+
+    <style name="TextViewUserInfoItemMain" parent="Widget.AppCompat.TextView">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="UserTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <!--<item name="hintTextColor">?attr/colorOnSurface</item>-->   //When you added this line
+        it will applies only one color in normal and activate state i.e colorOnSurface color
+    </style>
+
+    <style name="ThemeOverlay.App.TextInputLayout" parent="">
+        <item name="colorPrimary">@color/primary_dark</item> //Activated color
+        <item name="colorOnSurface">@color/text_color_day_night</item> //Normal color
+        <item name="colorError">@color/primary</item> //Error color
+
+        //Text Appearance styles
+
+        <!--Note: When setting a materialThemeOverlay on a custom TextInputLayout style, don’t forget to set editTextStyle to either a @style/Widget.MaterialComponents.TextInputEditText.* style or to a custom one that inherits from that.
+        The TextInputLayout styles set materialThemeOverlay that overrides editTextStyle with the specific TextInputEditText style needed. Therefore, you don’t need to specify a style tag on the edit text.-->
+        <item name="editTextStyle">@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox
+        </item>
+    </style>
+
+    <style name="InputBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/text_dark</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/corner_radius_input_text</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/corner_radius_input_text</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/corner_radius_input_text</item>
+        <item name="boxCornerRadiusTopStart">@dimen/corner_radius_input_text</item>
+        <item name="boxBackgroundColor">@color/white</item>
+        <item name="colorOnSurface">@android:color/transparent</item>
+    </style>
+
+
+</resources>

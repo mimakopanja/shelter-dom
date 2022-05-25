@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/WhitePage">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/help_title_textview"
+        style="@style/H2"
+        android:textColor="@color/text_color_day_night"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_50_dp"
+        android:layout_marginEnd="@dimen/margin_50_dp"
+        android:layout_marginTop="@dimen/margin_50_dp"
+        android:gravity="center"
+        android:text="@string/how_you_can_help_our_shelter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+
+            <TableLayout
+                android:id="@+id/tablelayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_marginStart="@dimen/margin_sixteen"
+                android:layout_marginEnd="@dimen/margin_sixteen"
+                app:layout_constraintTop_toBottomOf="@id/help_title_textview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TableRow>
+                    <Button
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:text="@string/pet_food"
+                        style="@style/ImageLabel"
+                        android:textColor="@color/text_color_day_night"
+                        android:drawableTop="@drawable/ic_pet_food" />
+
+                    <Button
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:text="@string/transportation"
+                        style="@style/ImageLabel"
+                        android:textColor="@color/text_color_day_night"
+                        android:drawableTop="@drawable/ic_transportation" />
+                </TableRow>
+
+                <TableRow>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/toys"
+                        style="@style/ImageLabel"
+                        android:textColor="@color/text_color_day_night"
+                        android:drawableTop="@drawable/ic_toys" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/bowls"
+                        style="@style/ImageLabel"
+                        android:textColor="@color/text_color_day_night"
+                        android:drawableTop="@drawable/ic_bowls_and_cups" />
+                </TableRow>
+
+                <TableRow>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/shampoos"
+                        style="@style/ImageLabel"
+                        android:textColor="@color/text_color_day_night"
+                        android:drawableTop="@drawable/ic_shampoos" />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/vitamins"
+                        style="@style/ImageLabel"
+                        android:textColor="@color/text_color_day_night"
+                        android:drawableTop="@drawable/ic_vitamins" />
+                </TableRow>
+
+
+                <TableRow>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/medicines"
+                        style="@style/ImageLabel"
+                        android:textColor="@color/text_color_day_night"
+                        android:drawableTop="@drawable/ic_medicines" />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:text="@string/collars_leashes"
+                        style="@style/ImageLabel"
+                        android:textColor="@color/text_color_day_night"
+                        android:drawableTop="@drawable/ic_collars_or_leashes" />
+                </TableRow>
+
+
+                <TableRow>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:text="@string/sleeping_area"
+                        style="@style/ImageLabel"
+                        android:textColor="@color/text_color_day_night"
+                        android:drawableTop="@drawable/ic_sleeping_area" />
+                </TableRow>
+
+            </TableLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
