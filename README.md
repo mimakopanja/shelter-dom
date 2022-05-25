@@ -48,7 +48,7 @@ App is using API data from [CozyHouse](https://shelter.tpyii.com).
 ## Architecture 🏛
 
 This project follows the MVP architecture with Moxy.
-![schematic_using]()
+![schematic_using](https://habrastorage.org/files/a2e/b51/8b4/a2eb518b465a4df9b47e68794519270d.gif)
 
 ## Requirements 📱
 - Android 6.0 and Above
