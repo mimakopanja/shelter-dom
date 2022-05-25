@@ -20,4 +20,5 @@
     <dimen name="text_12">12sp</dimen>
     <dimen name="text_25sp">25sp</dimen>
     <dimen name="text_20sp">20sp</dimen>
+    <dimen name="toolbar_size">75dp</dimen>
 </resources>

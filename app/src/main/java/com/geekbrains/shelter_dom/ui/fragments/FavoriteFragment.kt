@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.geekbrains.shelter_dom.MainActivity
+import com.geekbrains.shelter_dom.R
 import com.geekbrains.shelter_dom.data.api.PetsApiFactory
 import com.geekbrains.shelter_dom.data.repo.pets.PetsRepositoryImpl
 import com.geekbrains.shelter_dom.databinding.FragmentFavoritesBinding
@@ -53,6 +55,8 @@ class FavoriteFragment : MvpAppCompatFragment(), FavPetsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        changeFragmentTitle(activity as MainActivity, getString(R.string.favorites), "")
 
         val swipeGesture = object : SwipeGesture() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {

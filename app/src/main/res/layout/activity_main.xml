@@ -21,7 +21,7 @@
                 android:id="@+id/toolbar"
                 style="@style/ToolbarTheme"
                 android:layout_width="match_parent"
-                android:layout_height="68dp"
+                android:layout_height="@dimen/toolbar_size"
                 app:contentInsetStart="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:subtitle="@string/not_only_people_need_a_house"
@@ -49,7 +49,7 @@
         app:headerLayout="@layout/navigation_header"
         app:itemTextAppearance="@style/H4"
         app:menu="@menu/side_menu"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <RelativeLayout
             android:id="@+id/linear_login_reg"

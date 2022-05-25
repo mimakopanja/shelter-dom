@@ -16,7 +16,7 @@
     <string name="about_title">About the shelter “Cozy House”</string>
     <string name="about_description" formatted="false">Currently we have 121 dogs and 342 cats on our hands and statistics show that only 20% of them will find a family. The others will continue to live with us and will be waiting for a lucky chance to become dearly loved.\n\nWe feed our wards with the best food and make sure that they do not get sick, feel comfortable (including psychologically) and well. We are supported by 87 volunteers and 28 employees of various skill levels. About 12% of the animals are taken by the shelter staff. Taking care of the animals, they become attached to the pets and would hardly ever leave them alone.</string>
     <string name="home">Home</string>
-    <string name="our_pets">Our pets</string>
+    <string name="our_pets">Our Pets</string>
     <string name="how_you_can_help_our_shelter">How you can help our shelter</string>
     <string name="pet_food">Pet food</string>
     <string name="transportation">Transportation</string>
@@ -56,6 +56,7 @@
     <string name="connection_subtitle">Try:\n• Checking the network cables, modem or router.\n• Reconnecting to WI-FI</string>
     <string name="no_connection">No Internet</string>
     <string name="login">LOGIN</string>
+    <string name="auth">Login</string>
     <string name="register">register / login</string>
     <string name="slash">/</string>
     <string name="let_s_get_started">Let\'s get started</string>
@@ -69,5 +70,6 @@
     <string name="password">Password</string>
     <string name="list_is_empty">Your favorites list is empty! :( </string>
     <string name="login_successful">You\'ve logged out successfully!</string>
+    <string name="favorites">"Favorites</string>
 
 </resources>

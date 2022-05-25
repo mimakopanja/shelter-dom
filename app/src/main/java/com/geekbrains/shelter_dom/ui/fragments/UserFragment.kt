@@ -64,12 +64,13 @@ class UserFragment : MvpAppCompatFragment(), UserView {
 
     private fun fillData(user: UserSingle) {
         val profile = user.data?.profile
+        val fullName = profile?.name + profile?.surname
         binding.userInfoName.text = user.data?.name
         binding.userPhoneNumber.text = profile?.phone
         binding.userBirthday.text = profile?.birthday_at
         binding.userAddress.text = profile?.address
         binding.userAboutMe.text = profile?.description
-        binding.tvUserFullName.text = profile?.name.plus(" ").plus(profile?.surname)
+        binding.tvUserFullName.text = fullName
         binding.headerEmail.text = user.data?.email
 
         Glide.with(requireContext())

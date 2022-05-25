@@ -120,3 +120,8 @@ fun noConnectionDialog(activity: Activity){
         .build()
     mBottomSheetDialog.show()
 }
+
+fun changeFragmentTitle(activity: MainActivity, title: String, subtitle: String) {
+    activity.supportActionBar?.title = title
+    activity.supportActionBar?.subtitle = subtitle
+}
