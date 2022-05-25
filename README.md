@@ -39,7 +39,7 @@ App is using API data from [CozyHouse](https://shelter.tpyii.com).
 - [Lottie](https://github.com/airbnb/lottie-android) - Library that parses Adobe After Effects animations and renders them natively on mobile!
 
 ## Download 📥
-- Download latest APK from [here]()
+- Download latest APK from [here](https://appsenjoy.com/files/6124ef3959314d3f9fd39c3f041e3009.apk)
 
 ## Screenshots 📸
 ![screenshot](assets/screenshots1.png)
