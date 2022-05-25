@@ -61,7 +61,7 @@ class AuthFragment : MvpAppCompatFragment(), AuthView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        changeFragmentTitle(activity as MainActivity, getString(R.string.auth), "")
         binding.registerForm.visibility = View.GONE
         binding.loginForm.visibility = View.VISIBLE
         binding.loginAnimation.setAnimation(R.raw.login)

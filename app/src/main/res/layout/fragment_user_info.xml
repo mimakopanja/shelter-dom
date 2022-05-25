@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content_layout"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -31,8 +31,7 @@
             tools:text="Ivan Ivanov"
             android:maxLines="1"
             android:textAllCaps="true"
-            android:textColor="@color/text_color_day_night"
-            android:textSize="24sp" />
+            android:textColor="@color/text_color_day_night" />
 
         <TextView
             android:id="@+id/header_email"

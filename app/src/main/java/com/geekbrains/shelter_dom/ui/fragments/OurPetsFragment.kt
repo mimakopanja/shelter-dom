@@ -26,6 +26,7 @@ import com.geekbrains.shelter_dom.presentation.pets.PetsPresenter
 import com.geekbrains.shelter_dom.presentation.pets.adapter.PetsAdapter
 import com.geekbrains.shelter_dom.ui.Screens
 import com.geekbrains.shelter_dom.utils.App
+import com.geekbrains.shelter_dom.utils.changeFragmentTitle
 import com.geekbrains.shelter_dom.utils.noConnectionDialog
 import com.geekbrains.shelter_dom.utils.setVisibility
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -79,6 +80,7 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        changeFragmentTitle(activity as MainActivity, getString(R.string.our_pets), "")
         setHasOptionsMenu(true)
     }
 
@@ -149,7 +151,6 @@ class OurPetsFragment : MvpAppCompatFragment(), PetsView {
     }
 
     override fun noConnection() {
-//        App.INSTANCE.router.replaceScreen(Screens.OpenNoConnectionFragment())
         noConnectionDialog(requireActivity())
     }
 
